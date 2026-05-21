@@ -59,39 +59,6 @@ export default function GuidelinesTab() {
           <p key={rule} style={bodyStyle}>{rule}</p>
         ))}
       </div>
-
-      {/* Bucket hat note */}
-      <div className="w-[414px]">
-        <p style={bodyStyle}>
-          Our amazing bucket hat looks great on all ages, but is{' '}
-          <span className="underline">not protective enough for the young ones</span>.{' '}
-          <span style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.semibold, color: COLORS.brand.green }}>
-            Thank you for cooperating with CPDSA guidelines and staffers
-          </span>
-          <span style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.bold, color: COLORS.text.body }}>.</span>
-        </p>
-      </div>
-
-      {/* Bucket hat image */}
-      <div className="relative overflow-hidden rounded w-[376px] h-[244px]">
-        <img
-          src="/bucket-hat.jpg"
-          alt="CPDSA bucket hat"
-          className="absolute inset-0 w-full h-[154%] object-cover max-w-none"
-          style={{ top: '-24.59%' }}
-        />
-      </div>
-
-      {/* Swag CTA */}
-      <div className="flex justify-center w-[376px]">
-        <a
-          href={SITE.swagUrl}
-          className="flex items-center justify-center h-10 px-4 rounded-full text-white text-sm"
-          style={{ backgroundColor: COLORS.brand.purple, fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.medium }}
-        >
-          Get that swag!
-        </a>
-      </div>
     </div>
   );
 }

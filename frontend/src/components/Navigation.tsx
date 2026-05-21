@@ -17,18 +17,18 @@ export default function Navigation() {
 
   return (
     <header className="bg-white sticky top-0 z-50">
-      <div className="max-w-[1440px] mx-auto px-6 h-[122px] flex items-center gap-4">
+      <div className="max-w-[1440px] mx-auto h-[80px] flex items-center gap-4">
         <Link href="/" className="flex-shrink-0">
           <img
             src="/cpdsa-logo.webp"
             alt="CPDSA"
-            className="h-[100px] w-auto"
+            className="h-[60px] w-auto"
             style={{ mixBlendMode: 'multiply' }}
           />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center flex-1">
+        <nav className="hidden md:flex items-center flex-1 justify-end">
           {NAV_LINKS.map((link) => {
             const active = isActive(link.href);
             return (

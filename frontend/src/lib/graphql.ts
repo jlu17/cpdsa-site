@@ -151,6 +151,49 @@ export async function getDJs(): Promise<DJ[]> {
   return data.djs.nodes;
 }
 
+export interface SkateVideo {
+  title: string;
+  databaseId: number;
+  skateVideo: {
+    videoUrl: { url: string };
+    videoTitle: string;
+    videoSubtitle: string;
+    videoYear: string;
+  };
+  videoCategories: {
+    nodes: Array<{ name: string; slug: string }>;
+  };
+}
+
+export const GET_VIDEOS = gql`
+  query GetVideos {
+    videos {
+      nodes {
+        title
+        databaseId
+        skateVideo {
+          videoUrl { url }
+          videoTitle
+          videoSubtitle
+          videoYear
+        }
+        videoCategories {
+          nodes { name slug }
+        }
+      }
+    }
+  }
+`;
+
+export async function getVideos(): Promise<SkateVideo[]> {
+  try {
+    const data = await client.request<{ videos: { nodes: SkateVideo[] } }>(GET_VIDEOS);
+    return data.videos.nodes;
+  } catch {
+    return [];
+  }
+}
+
 export async function getUpcomingEvents(): Promise<Event[]> {
   try {
     const data = await client.request<{ events: { nodes: Event[] } }>(GET_UPCOMING_EVENTS);

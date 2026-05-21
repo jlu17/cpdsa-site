@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #2b8d01;
+  --color-yellow: #fec603;
+  --color-purple: #6633cc;
+  --font-anton: "Anton", Impact, sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #1e1e1e;
+}

@@ -27,22 +27,6 @@ export default function Navigation() {
           />
         </Link>
 
-        {/* Weather widget */}
-        <div
-          className="hidden md:flex items-center gap-3 px-2 py-4 rounded-[14px] shadow-md flex-shrink-0"
-          style={{ border: `2px solid ${COLORS.ui.weatherBorder}`, height: 48 }}
-        >
-          <WeatherIcon />
-          <div className="flex items-start leading-none">
-            <span style={{ fontFamily: FONTS.anton, fontSize: 32, lineHeight: '40px', letterSpacing: '0.37px' }}>
-              72
-            </span>
-            <span style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.light, fontSize: 20, lineHeight: '28px', letterSpacing: '-0.45px', marginTop: 6 }}>
-              °F
-            </span>
-          </div>
-        </div>
-
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center flex-1">
           {NAV_LINKS.map((link) => {
@@ -107,24 +91,5 @@ export default function Navigation() {
         </div>
       )}
     </header>
-  );
-}
-
-function WeatherIcon() {
-  return (
-    <svg width="32" height="30" viewBox="0 0 32 30" fill="none" aria-hidden="true">
-      <circle cx="16" cy="15" r="7" fill={COLORS.brand.yellow} />
-      {[0, 45, 90, 135].map((deg) => {
-        const rad = (deg * Math.PI) / 180;
-        const cos = Math.cos(rad);
-        const sin = Math.sin(rad);
-        return (
-          <g key={deg}>
-            <line x1={16 + cos * 9} y1={15 + sin * 9} x2={16 + cos * 13} y2={15 + sin * 13} stroke={COLORS.brand.yellow} strokeWidth="2" strokeLinecap="round" />
-            <line x1={16 - cos * 9} y1={15 - sin * 9} x2={16 - cos * 13} y2={15 - sin * 13} stroke={COLORS.brand.yellow} strokeWidth="2" strokeLinecap="round" />
-          </g>
-        );
-      })}
-    </svg>
   );
 }

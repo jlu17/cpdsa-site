@@ -10,7 +10,6 @@ export const COLORS = {
     purple: '#6633cc',
   },
   ui: {
-    weatherBorder: '#51a2ff',
     bench: '#da1026',
   },
   text: {

@@ -37,12 +37,12 @@ export default function ThisWeekSection({ events, onDjClick, heading = 'This wee
         {events.map((event, i) => (
           <div
             key={event.databaseId}
-            className="flex flex-col justify-end px-6 py-2"
-            style={{
-              width: '50%',
-              minHeight: 235,
-              borderRight: i % 2 === 0 ? `2px solid ${COLORS.brand.purple}` : undefined,
-            }}
+            className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2${
+              i % 2 === 0
+                ? ' border-b-2 border-[#6633cc] sm:border-b-0 sm:border-r-2'
+                : ''
+            }`}
+            style={{ minHeight: 235 }}
           >
             {/* Date + time */}
             <div className="flex items-start gap-3 mb-1">

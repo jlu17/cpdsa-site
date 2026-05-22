@@ -10,6 +10,8 @@ const mapPhoto = '/map-photo.jpg';
 const volunteersPhoto = '/volunteers-photo.jpg';
 const skatesPhoto = '/skates-photo.jpg';
 
+const directionLinks = ['From 72nd Street', 'From West 67th Street', 'From the South entrances'];
+
 export default async function Home() {
   const events = await getEvents();
   const { thisWeek, upcoming } = splitEvents(events);
@@ -21,7 +23,6 @@ export default async function Home() {
       <section className="w-full flex flex-col">
         <ThisWeekSection events={displayEvents} heading="Upcoming Schedule" />
 
-        {/* See full Schedule button */}
         <div className="flex items-center h-[75px] px-6">
           <Link
             href="/schedule"
@@ -34,16 +35,16 @@ export default async function Home() {
       </section>
 
       {/* ── We Are ── */}
-      <section className="flex w-full rounded-[4px]" style={{ backgroundColor: '#2b8d01' }}>
-        {/* Left: copy */}
-        <div className="flex flex-col gap-2 items-start justify-center p-6 w-1/2 self-stretch">
+      <section className="flex flex-col sm:flex-row w-full rounded-[4px]" style={{ backgroundColor: '#2b8d01' }}>
+        {/* Text */}
+        <div className="flex flex-col gap-2 items-start justify-center p-6 w-full sm:w-1/2">
           <p
-            className="text-white whitespace-nowrap"
+            className="text-white"
             style={{ fontFamily: 'var(--font-anton)', fontSize: 64, lineHeight: 1.2 }}
           >
             WE ARE
           </p>
-          <div className="pb-4 w-[550px] max-w-full">
+          <div className="pb-4 max-w-full">
             <p
               className="text-white text-base tracking-[0.16px]"
               style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400 }}
@@ -60,8 +61,8 @@ export default async function Home() {
           </Link>
         </div>
 
-        {/* Right: photo */}
-        <div className="flex-1 relative overflow-hidden rounded-[4px] min-h-[327px]">
+        {/* Photo */}
+        <div className="w-full h-[327px] sm:flex-1 sm:h-auto sm:min-h-[327px] relative overflow-hidden rounded-[4px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={communityPhoto}
@@ -73,23 +74,26 @@ export default async function Home() {
       </section>
 
       {/* ── Visit the Skate Circle ── */}
-      <section className="flex w-full rounded-[4px]">
-        {/* Left: copy — narrow column like Figma (368px) */}
-        <div className="flex flex-col items-start justify-between pt-6 px-6 pb-6 w-[368px] flex-shrink-0">
-          <p
-            className="text-black leading-none"
-            style={{ fontFamily: 'var(--font-anton)', fontSize: 64 }}
-          >
-            VISIT THE<br />SKATE CIRCLE
-          </p>
-          <p
-            className="text-black text-base tracking-[0.16px] mt-4"
-            style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400 }}
-          >
-            Please note that there is no skating session on the days Central Park hosts special events. Children under the age of 14 will need a helmet.
-          </p>
-          <div className="flex flex-col mt-4">
-            {['From 72nd Street', 'From West 67th Street', 'From the South entrances'].map((label) => (
+      <section className="flex flex-col sm:flex-row w-full rounded-[4px]">
+        {/* Text column */}
+        <div className="flex flex-col items-start p-6 w-full sm:w-[368px] sm:flex-shrink-0 sm:justify-between">
+          <div>
+            <p
+              className="text-black leading-none"
+              style={{ fontFamily: 'var(--font-anton)', fontSize: 64 }}
+            >
+              VISIT THE<br />SKATE CIRCLE
+            </p>
+            <p
+              className="text-black text-base tracking-[0.16px] mt-4"
+              style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400 }}
+            >
+              Please note that there is no skating session on the days Central Park hosts special events. Children under the age of 14 will need a helmet.
+            </p>
+          </div>
+          {/* Direction links — desktop only (inside text column) */}
+          <div className="hidden sm:flex flex-col mt-4">
+            {directionLinks.map((label) => (
               <a
                 key={label}
                 href={`/visit#${label.toLowerCase().replace(/\s+/g, '-')}`}
@@ -102,8 +106,8 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Right: Map */}
-        <div className="flex-1 relative h-[424px]">
+        {/* Map */}
+        <div className="relative w-full h-[300px] sm:flex-1 sm:h-[424px]">
           <Image
             src={mapPhoto}
             alt="Map of the Skate Circle in Central Park"
@@ -120,12 +124,26 @@ export default async function Home() {
             Google Maps
           </a>
         </div>
+
+        {/* Direction links — mobile only (below map) */}
+        <div className="flex sm:hidden flex-col px-6 pb-2">
+          {directionLinks.map((label) => (
+            <a
+              key={label}
+              href={`/visit#${label.toLowerCase().replace(/\s+/g, '-')}`}
+              className="py-2 text-base underline whitespace-nowrap tracking-[0.49px] capitalize"
+              style={{ fontFamily: 'var(--font-poppins)', fontWeight: 600, color: '#6633cc' }}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
       </section>
 
       {/* ── Grease the Wheels ── */}
-      <section className="flex w-full rounded-[4px] h-[368px]">
-        {/* Left: photo */}
-        <div className="flex-1 relative overflow-hidden rounded-[4px]">
+      <section className="flex flex-col sm:flex-row w-full rounded-[4px] sm:h-[368px]">
+        {/* Photo (top on mobile, left on desktop) */}
+        <div className="w-full h-[327px] sm:h-auto sm:flex-1 relative overflow-hidden rounded-[4px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={volunteersPhoto}
@@ -135,15 +153,15 @@ export default async function Home() {
           />
         </div>
 
-        {/* Right: copy */}
-        <div className="flex flex-col gap-2 items-start justify-center p-6 w-1/2">
+        {/* Text (bottom on mobile, right on desktop) */}
+        <div className="flex flex-col gap-2 items-start justify-center p-6 w-full sm:w-1/2">
           <p
-            className="text-black whitespace-nowrap"
+            className="text-black"
             style={{ fontFamily: 'var(--font-anton)', fontSize: 64, lineHeight: 1.2 }}
           >
             GREASE THE WHEELS
           </p>
-          <div className="pb-4 w-[550px] max-w-full">
+          <div className="pb-4 max-w-full">
             <p
               className="text-black text-base tracking-[0.16px]"
               style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400 }}
@@ -164,16 +182,15 @@ export default async function Home() {
       </section>
 
       {/* ── Skate Maintenance ── */}
-      <section className="flex w-full rounded-[4px]">
-        {/* Left: copy */}
-        <div className="flex flex-col gap-2 items-start justify-center p-6 w-1/2">
+      <section className="flex flex-col sm:flex-row w-full rounded-[4px]">
+        {/* Text (top on mobile, left on desktop) */}
+        <div className="flex flex-col gap-2 items-start justify-center p-6 w-full sm:w-1/2">
           <p
-            className="whitespace-nowrap"
             style={{ fontFamily: 'var(--font-anton)', fontSize: 64, lineHeight: 1.2, color: 'rgba(0,0,0,0.9)' }}
           >
             SKATE MAINTENANCE
           </p>
-          <div className="pb-4 w-[550px] max-w-full">
+          <div className="pb-4 max-w-full">
             <p
               className="text-base tracking-[0.16px]"
               style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400, color: 'rgba(0,0,0,0.9)' }}
@@ -192,8 +209,8 @@ export default async function Home() {
           </a>
         </div>
 
-        {/* Right: b&w skates photo */}
-        <div className="w-1/2 relative overflow-hidden rounded-[4px] h-[315px]">
+        {/* Photo (bottom on mobile, right on desktop) */}
+        <div className="w-full h-[315px] sm:w-1/2 relative overflow-hidden rounded-[4px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={skatesPhoto}

@@ -1,14 +1,12 @@
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatUpcomingDate, pairUp, EVENT_TIME, upcomingDjFontSize } from './scheduleUtils';
+import { formatUpcomingDate, EVENT_TIME, upcomingDjFontSize } from './scheduleUtils';
 
 const DATE_COLOR = '#204630';
 
 export default function UpcomingSection({ events, onDjClick }: { events: SkateEvent[]; onDjClick?: (name: string) => void }) {
   if (events.length === 0) return null;
-
-  const rows = pairUp(events);
 
   return (
     <section className="w-full flex flex-col pb-12">
@@ -24,40 +22,35 @@ export default function UpcomingSection({ events, onDjClick }: { events: SkateEv
         </p>
       </div>
 
-      {rows.map(([left, right]) => (
-        <div
-          key={left.databaseId}
-          className="flex flex-wrap w-full"
-          style={{ borderTop: `1px solid ${COLORS.border.default}` }}
-        >
-          <EventCell event={left} position="left" onDjClick={onDjClick} />
-          {right
-            ? <EventCell event={right} position="right" onDjClick={onDjClick} />
-            : <div style={{ width: '50%' }} />
-          }
-        </div>
-      ))}
+      <div className="flex flex-wrap w-full">
+        {events.map((event, i) => (
+          <EventCell
+            key={event.databaseId}
+            event={event}
+            isLeft={i % 2 === 0}
+            onDjClick={onDjClick}
+          />
+        ))}
+      </div>
     </section>
   );
 }
 
 function EventCell({
   event,
-  position,
+  isLeft,
   onDjClick,
 }: {
   event: SkateEvent;
-  position: 'left' | 'right';
+  isLeft: boolean;
   onDjClick?: (name: string) => void;
 }) {
   return (
     <div
-      className="flex flex-col justify-end px-6 py-2"
-      style={{
-        width: '50%',
-        minHeight: 180,
-        borderRight: position === 'left' ? `1px solid ${COLORS.border.default}` : undefined,
-      }}
+      className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2 border-t border-black/15${
+        isLeft ? ' sm:border-r sm:border-r-black/15' : ''
+      }`}
+      style={{ minHeight: 180 }}
     >
       {/* Date + time */}
       <p style={{

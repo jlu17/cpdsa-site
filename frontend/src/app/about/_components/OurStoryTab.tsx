@@ -45,8 +45,8 @@ export default function OurStoryTab() {
   return (
     <div className="flex flex-col w-full">
       {/* About the CPDSA — image + text */}
-      <div className="flex items-start gap-8 px-6 py-8">
-        <div className="flex-shrink-0 w-[598px] relative rounded-[4px] overflow-hidden" style={{ height: 420 }}>
+      <div className="flex flex-col sm:flex-row items-start gap-8 px-6 py-8">
+        <div className="w-full h-[280px] sm:flex-shrink-0 sm:w-[598px] sm:h-[420px] relative rounded-[4px] overflow-hidden">
           <Image
             src="/about-cpdsa-photo.jpg"
             alt="Skaters at the Skater's Circle in Central Park"
@@ -56,7 +56,7 @@ export default function OurStoryTab() {
         </div>
 
         <div className="flex flex-col gap-6 flex-1 pt-2">
-          <p style={headingStyle} className="pt-8">ABOUT THE CPDSA</p>
+          <p style={headingStyle} className="sm:pt-8">ABOUT THE CPDSA</p>
           <div className="flex flex-col gap-4">
             <p style={bodyStyle}>
               The Central Park Dance Skaters Association manages free roller skating sessions in partnership with the City Agencies—Parks Department, the Police Department and the Central Park Conservancy, obtaining all permits necessary to organize legally sanctioned, safe and secure events.
@@ -70,16 +70,17 @@ export default function OurStoryTab() {
 
       {/* Green stat bar */}
       <div
-        className="flex w-full px-4 py-6"
+        className="flex flex-col sm:flex-row w-full px-4 py-6"
         style={{ backgroundColor: COLORS.brand.green }}
       >
         {STATS.map(({ headline, sub }, i) => (
           <div
             key={headline}
-            className="flex flex-col gap-1 flex-1 px-8 py-6"
-            style={{
-              borderRight: i < STATS.length - 1 ? `1px solid ${COLORS.brand.yellow}` : undefined,
-            }}
+            className={`flex flex-col gap-1 flex-1 px-6 py-4 sm:px-8 sm:py-6${
+              i < STATS.length - 1
+                ? ' border-b border-[#fec603] sm:border-b-0 sm:border-r sm:border-r-[#fec603]'
+                : ''
+            }`}
           >
             <p
               style={{
@@ -108,11 +109,11 @@ export default function OurStoryTab() {
 
       {/* Purple Mission / Vision / Goals card */}
       <div
-        className="flex items-stretch mx-6 my-8 rounded-[4px] overflow-hidden"
+        className="flex flex-col sm:flex-row items-stretch mx-6 my-8 rounded-[4px] overflow-hidden"
         style={{ backgroundColor: COLORS.brand.purple }}
       >
-        {/* Left image */}
-        <div className="flex-shrink-0 w-[329px] p-6 self-stretch">
+        {/* Image */}
+        <div className="w-full h-[240px] sm:w-[329px] sm:h-auto p-6 sm:self-stretch sm:flex-shrink-0">
           <div className="relative w-full h-full rounded-[4px] overflow-hidden">
             <Image
               src="/about-mission-photo.jpg"
@@ -123,9 +124,9 @@ export default function OurStoryTab() {
           </div>
         </div>
 
-        {/* Two text columns */}
-        <div className="flex flex-1">
-          {/* Left column: Mission + Vision */}
+        {/* Two text columns — stacked on mobile, side-by-side on desktop */}
+        <div className="flex flex-col sm:flex-row flex-1">
+          {/* Mission + Vision */}
           <div className="flex flex-col gap-6 flex-1 px-6 py-8">
             <div className="flex flex-col gap-3">
               <p style={mvgHeadingStyle}>OUR MISSION</p>
@@ -141,10 +142,8 @@ export default function OurStoryTab() {
             </div>
           </div>
 
-          {/* Right column: Goals */}
-          <div
-            className="flex flex-col gap-3 flex-1 px-6 py-8"
-          >
+          {/* Goals */}
+          <div className="flex flex-col gap-3 flex-1 px-6 py-8">
             <p style={mvgHeadingStyle}>OUR GOALS</p>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-1">

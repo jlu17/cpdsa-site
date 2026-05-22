@@ -5,9 +5,9 @@ import { SITE } from '@/lib/constants/site';
 
 export default function AboutSkateMaintenanceSection() {
   return (
-    <div className="flex items-stretch w-full">
+    <div className="flex flex-col sm:flex-row items-stretch w-full">
       {/* Text */}
-      <div className="flex flex-col justify-center gap-6 px-12 py-10 flex-1">
+      <div className="flex flex-col justify-center gap-6 px-6 py-8 sm:px-12 sm:py-10 flex-1">
         <p
           style={{
             fontFamily: FONTS.anton,
@@ -51,7 +51,7 @@ export default function AboutSkateMaintenanceSection() {
       </div>
 
       {/* Photo */}
-      <div className="flex-shrink-0 w-[560px] relative overflow-hidden" style={{ height: 420 }}>
+      <div className="w-full h-[300px] sm:flex-shrink-0 sm:w-[560px] sm:h-[420px] relative overflow-hidden">
         <Image
           src="/about-skate-maintenance.jpg"
           alt="Close-up of roller skates being maintained"

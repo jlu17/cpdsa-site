@@ -8,11 +8,11 @@ const LAVENDER = '#db9fff';
 export default function AboutGreaseSection() {
   return (
     <div
-      className="flex items-stretch w-full"
+      className="flex flex-col sm:flex-row items-stretch w-full"
       style={{ backgroundColor: LAVENDER }}
     >
       {/* Photo */}
-      <div className="flex-shrink-0 w-[560px] relative" style={{ minHeight: 480 }}>
+      <div className="w-full h-[300px] sm:flex-shrink-0 sm:w-[560px] sm:h-auto sm:min-h-[480px] relative">
         <Image
           src="/about-grease-photo.jpg"
           alt="CPDSA volunteers at the Skater's Circle"
@@ -22,7 +22,7 @@ export default function AboutGreaseSection() {
       </div>
 
       {/* Text */}
-      <div className="flex flex-col justify-center gap-6 px-12 py-10 flex-1">
+      <div className="flex flex-col justify-center gap-6 px-6 py-8 sm:px-12 sm:py-10 flex-1">
         <p
           style={{
             fontFamily: FONTS.anton,

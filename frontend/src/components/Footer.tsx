@@ -12,13 +12,13 @@ export default function Footer() {
 
         {/* Top row */}
         <div
-          className="flex gap-[94px] items-start pb-6 w-full"
+          className="flex flex-col sm:flex-row gap-6 sm:gap-[94px] items-start pb-6 w-full"
           style={{ borderBottom: `1px solid ${COLORS.border.footerDefault}` }}
         >
           {/* Org info */}
-          <div className="flex gap-[17px] items-center w-[486px] flex-shrink-0">
+          <div className="flex gap-[17px] items-center w-full sm:w-[486px] sm:flex-shrink-0">
             <Image src="/cpdsa-logo.png" alt={SITE.shortName} height={80} width={64} className="flex-shrink-0" />
-            <p className="text-sm h-[90px] w-[334px]" style={{ fontFamily: FONTS.poppins, color: COLORS.text.footerMuted, letterSpacing: '-0.15px' }}>
+            <p className="text-sm sm:h-[90px] sm:w-[334px]" style={{ fontFamily: FONTS.poppins, color: COLORS.text.footerMuted, letterSpacing: '-0.15px' }}>
               <span style={{ fontWeight: FONT_WEIGHTS.semibold, color: COLORS.text.footerPrimary }}>
                 {SITE.orgLegalName}
               </span>
@@ -27,8 +27,8 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick links */}
-          <div className="flex flex-col gap-[15px]">
+          {/* Quick links — hidden on mobile */}
+          <div className="hidden sm:flex flex-col gap-[15px]">
             <p className="text-sm whitespace-nowrap" style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.semibold, color: COLORS.text.footerPrimary }}>
               Quick links
             </p>
@@ -46,7 +46,7 @@ export default function Footer() {
           </div>
 
           {/* Socials */}
-          <div className="flex flex-col gap-4 ml-auto">
+          <div className="flex flex-col gap-4 sm:ml-auto">
             <p className="text-sm whitespace-nowrap" style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.semibold, color: COLORS.text.footerPrimary }}>
               Socials
             </p>

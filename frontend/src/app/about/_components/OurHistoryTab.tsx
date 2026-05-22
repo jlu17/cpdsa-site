@@ -56,9 +56,9 @@ const MILESTONES = [
 
 export default function OurHistoryTab() {
   return (
-    <div className="flex gap-6 items-start pl-12 pr-24 py-8">
-      {/* Left image */}
-      <div className="flex-shrink-0 w-[400px] relative rounded-[4px] overflow-hidden" style={{ minHeight: 600 }}>
+    <div className="flex flex-col sm:flex-row gap-6 items-start px-6 sm:pl-12 sm:pr-24 py-8">
+      {/* Image — full width on mobile, fixed column on desktop */}
+      <div className="w-full h-[280px] sm:flex-shrink-0 sm:w-[400px] sm:h-[600px] relative rounded-[4px] overflow-hidden">
         <Image
           src="/about-history-photo.jpg"
           alt="Vintage roller skating at Central Park"

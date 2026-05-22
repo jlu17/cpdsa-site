@@ -6,7 +6,7 @@ import { formatThisWeekDate, EVENT_TIME } from './scheduleUtils';
 
 const DATE_COLOR = '#204630';
 
-export default function ThisWeekSection({ events }: { events: SkateEvent[] }) {
+export default function ThisWeekSection({ events, onDjClick }: { events: SkateEvent[]; onDjClick?: (name: string) => void }) {
   if (events.length === 0) return null;
 
   return (
@@ -57,11 +57,13 @@ export default function ThisWeekSection({ events }: { events: SkateEvent[] }) {
             {/* DJ name */}
             <p
               className="uppercase leading-[1.05] min-w-full"
+              onClick={() => onDjClick?.(event.title)}
               style={{
                 fontFamily: FONTS.anton,
                 fontSize: 120,
                 color: COLORS.brand.purple,
                 letterSpacing: '0.26px',
+                cursor: onDjClick ? 'pointer' : undefined,
               }}
             >
               {event.title}

@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { SITE } from '@/lib/constants/site';
 import PageHero from '@/components/ui/PageHero';
 import TabSwitcher from './_components/TabSwitcher';
+import { COLORS } from '@/lib/constants/colors';
 
 export const metadata: Metadata = {
   title: `The Skate Circle — ${SITE.shortName}`,
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function SkateCirclePage() {
   return (
     <div className="flex flex-col gap-6 items-center pt-6">
-      <PageHero title="THE SKATE CIRCLE" />
+      <PageHero title="THE SKATE CIRCLE" color={COLORS.brand.purple} />
       <TabSwitcher />
     </div>
   );

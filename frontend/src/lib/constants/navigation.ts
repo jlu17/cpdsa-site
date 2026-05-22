@@ -5,7 +5,6 @@ export const NAV_LINKS = [
   { href: '/about', label: 'Our Story' },
   { href: '/join', label: 'Join us' },
   { href: '/media', label: 'Media' },
-  { href: '/swag', label: 'Swag' },
 ] as const;
 
 export type NavLink = (typeof NAV_LINKS)[number];

@@ -10,7 +10,7 @@ export const FONTS = {
 
 export const FONT_SIZES = {
   /** Interior page hero title — large yellow Anton heading */
-  pageHero: 140,
+  pageHero: 120,
   /** Major section headings (We Are, Grease the Wheels, etc.) */
   sectionHeading: 64,
   /** Card sub-headings (Mission, Vision, Goals) */

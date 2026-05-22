@@ -17,10 +17,10 @@ export default function Navigation() {
 
   return (
     <header className="bg-white sticky top-0 z-50">
-      <div className="max-w-[1440px] mx-auto h-[80px] flex items-center gap-4">
+      <div className="max-w-[1440px] mx-auto h-[80px] flex items-center gap-4 px-6">
         <Link href="/" className="flex-shrink-0">
           <img
-            src="/cpdsa-logo.webp"
+            src="/cpdsa-logo.png"
             alt="CPDSA"
             className="h-[60px] w-auto"
             style={{ mixBlendMode: 'multiply' }}

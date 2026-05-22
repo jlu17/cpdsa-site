@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${anton.variable} ${poppins.variable}`}>
       <body style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
         <Navigation />
-        <main>{children}</main>
+        <main className="max-w-[1440px] mx-auto w-full">{children}</main>
         <Footer />
       </body>
     </html>

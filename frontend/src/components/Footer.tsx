@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_WEIGHTS } from '@/lib/constants/typography';
 import { SITE } from '@/lib/constants/site';
-import { FOOTER_LINK_GROUPS, FOOTER_LEGAL_LINKS, SOCIAL_LINKS } from '@/lib/constants/footer';
+import { FOOTER_LINK_GROUPS, SOCIAL_LINKS } from '@/lib/constants/footer';
 
 export default function Footer() {
   return (
@@ -16,7 +16,7 @@ export default function Footer() {
         >
           {/* Org info */}
           <div className="flex gap-[17px] items-center w-[486px] flex-shrink-0">
-            <img src="/footer-logo.png" alt={SITE.shortName} className="h-[80px] w-[64px] flex-shrink-0" />
+            <img src="/cpdsa-logo.png" alt={SITE.shortName} className="h-[80px] w-[64px] flex-shrink-0" />
             <p className="text-sm h-[90px] w-[334px]" style={{ fontFamily: FONTS.poppins, color: COLORS.text.footerMuted, letterSpacing: '-0.15px' }}>
               <span style={{ fontWeight: FONT_WEIGHTS.semibold, color: COLORS.text.footerPrimary }}>
                 {SITE.orgLegalName}
@@ -72,18 +72,6 @@ export default function Footer() {
           <p className="text-xs whitespace-nowrap" style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.medium, color: COLORS.text.footerMuted, letterSpacing: '-0.15px' }}>
             © {new Date().getFullYear()} {SITE.fullName}. All rights reserved.
           </p>
-          <div className="flex gap-10">
-            {FOOTER_LEGAL_LINKS.map(({ label, href }) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-xs hover:text-white transition-colors"
-                style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.medium, color: COLORS.text.footerMuted }}
-              >
-                {label}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

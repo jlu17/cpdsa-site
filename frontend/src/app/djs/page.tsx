@@ -19,7 +19,7 @@ export default async function DJsPage() {
   return (
     <div className="flex flex-col gap-6 items-center pt-6">
       {/* Purple title — matches About page, per Figma */}
-      <PageHero title="Our DJs" color={COLORS.brand.purple} />
+      <PageHero title="OUR DJS" color={COLORS.brand.purple} />
       <DJGrid djs={djs} />
       <DJGreaseSection />
       <DJSkateSection />

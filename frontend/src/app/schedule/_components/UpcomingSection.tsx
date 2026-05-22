@@ -5,7 +5,7 @@ import { formatUpcomingDate, pairUp, EVENT_TIME } from './scheduleUtils';
 
 const DATE_COLOR = '#204630';
 
-export default function UpcomingSection({ events }: { events: SkateEvent[] }) {
+export default function UpcomingSection({ events, onDjClick }: { events: SkateEvent[]; onDjClick?: (name: string) => void }) {
   if (events.length === 0) return null;
 
   const rows = pairUp(events);
@@ -24,18 +24,15 @@ export default function UpcomingSection({ events }: { events: SkateEvent[] }) {
         </p>
       </div>
 
-      {rows.map(([left, right], rowIndex) => (
+      {rows.map(([left, right]) => (
         <div
           key={left.databaseId}
           className="flex flex-wrap w-full"
           style={{ borderTop: `1px solid ${COLORS.border.default}` }}
         >
-          {/* Left cell */}
-          <EventCell event={left} position="left" />
-
-          {/* Right cell — empty placeholder keeps layout if odd total */}
+          <EventCell event={left} position="left" onDjClick={onDjClick} />
           {right
-            ? <EventCell event={right} position="right" />
+            ? <EventCell event={right} position="right" onDjClick={onDjClick} />
             : <div style={{ width: '50%' }} />
           }
         </div>
@@ -47,9 +44,11 @@ export default function UpcomingSection({ events }: { events: SkateEvent[] }) {
 function EventCell({
   event,
   position,
+  onDjClick,
 }: {
   event: SkateEvent;
   position: 'left' | 'right';
+  onDjClick?: (name: string) => void;
 }) {
   return (
     <div
@@ -78,11 +77,13 @@ function EventCell({
       {/* DJ name */}
       <p
         className="uppercase leading-[1.05] min-w-full"
+        onClick={() => onDjClick?.(event.title)}
         style={{
           fontFamily: FONTS.anton,
           fontSize: FONT_SIZES.scheduleEvent,
           color: COLORS.brand.green,
           letterSpacing: '0.26px',
+          cursor: onDjClick ? 'pointer' : undefined,
         }}
       >
         {event.title}

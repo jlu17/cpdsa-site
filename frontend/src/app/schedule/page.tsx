@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import { SITE } from '@/lib/constants/site';
-import { getEvents } from '@/lib/graphql';
+import { getEvents, getDJs } from '@/lib/graphql';
 import PageHero from '@/components/ui/PageHero';
-import ThisWeekSection from './_components/ThisWeekSection';
-import UpcomingSection from './_components/UpcomingSection';
+import ScheduleWithDrawer from './_components/ScheduleWithDrawer';
 import { splitEvents } from './_components/scheduleUtils';
+import { COLORS } from '@/lib/constants/colors';
 
 export const metadata: Metadata = {
   title: `Schedule — ${SITE.shortName}`,
@@ -12,16 +12,13 @@ export const metadata: Metadata = {
 };
 
 export default async function SchedulePage() {
-  const events = await getEvents();
+  const [events, djs] = await Promise.all([getEvents(), getDJs()]);
   const { thisWeek, upcoming } = splitEvents(events);
 
   return (
     <div className="flex flex-col gap-6 items-center pt-6 w-full">
-      <PageHero title="SCHEDULE" />
-      <div className="flex flex-col w-full gap-4">
-        <ThisWeekSection events={thisWeek} />
-        <UpcomingSection events={upcoming} />
-      </div>
+      <PageHero title="SCHEDULE" color={COLORS.brand.purple} />
+      <ScheduleWithDrawer thisWeek={thisWeek} upcoming={upcoming} djs={djs} />
     </div>
   );
 }

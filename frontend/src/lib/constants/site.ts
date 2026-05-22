@@ -8,7 +8,6 @@ export const SITE = {
   /** Update this if the volunteer form URL changes in Google Forms */
   volunteerFormUrl:
     'https://docs.google.com/forms/d/e/1FAIpQLSexample/viewform',
-  swagUrl: '/swag',
   googleMapsUrl:
     'https://maps.google.com/?q=Skaters+Circle+Central+Park+New+York',
 } as const;

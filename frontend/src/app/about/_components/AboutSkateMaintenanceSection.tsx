@@ -29,22 +29,8 @@ export default function AboutSkateMaintenanceSection() {
               lineHeight: 1.6,
             }}
           >
-            Keeping skates in top condition is a labor of love. Our maintenance volunteers
-            clean bearings, replace wheels, and check every pair of rentals before each
-            Sunday session — so everyone who laces up can skate with confidence.
-          </p>
-          <p
-            style={{
-              fontFamily: FONTS.poppins,
-              fontWeight: FONT_WEIGHTS.regular,
-              fontSize: FONT_SIZES.body,
-              color: COLORS.text.body,
-              letterSpacing: '0.16px',
-              lineHeight: 1.6,
-            }}
-          >
-            Have a knack for mechanics or just want to help? Join our skate maintenance
-            crew and make a hands-on difference every week.
+            The CPDSA is only run by volunteers. We need your help in the fields of administration and operation, 
+            including setting up and breaking down the skate circle for each session.
           </p>
         </div>
 
@@ -64,11 +50,11 @@ export default function AboutSkateMaintenanceSection() {
       </div>
 
       {/* Photo */}
-      <div className="flex-shrink-0 w-[560px]" style={{ minHeight: 420 }}>
+      <div className="flex-shrink-0 w-[560px] overflow-hidden" style={{ height: 420 }}>
         <img
           src="/about-skate-maintenance.jpg"
           alt="Close-up of roller skates being maintained"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-bottom"
           style={{ filter: 'grayscale(100%)' }}
         />
       </div>

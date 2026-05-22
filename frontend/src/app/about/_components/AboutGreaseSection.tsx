@@ -43,22 +43,9 @@ export default function AboutGreaseSection() {
               lineHeight: 1.6,
             }}
           >
-            Everything we do is powered by volunteers and the generosity of our community.
-            From setting up the DJ booth each Sunday to repairing skates and mentoring new
-            skaters, every contribution keeps the Circle rolling.
-          </p>
-          <p
-            style={{
-              fontFamily: FONTS.poppins,
-              fontWeight: FONT_WEIGHTS.regular,
-              fontSize: FONT_SIZES.body,
-              color: COLORS.text.body,
-              letterSpacing: '0.16px',
-              lineHeight: 1.6,
-            }}
-          >
-            Your donation directly supports free skate rentals, sound equipment, and
-            programming that keeps Central Park alive with music all summer long.
+            We are a nonprofit organization, and memberships and donations allow us to pay for permits, 
+            sound equipment, and other essential operating costs necessary to keep the CPDSA Skate Circle 
+            rolling. Without your support there is no Skate Circle.
           </p>
         </div>
 

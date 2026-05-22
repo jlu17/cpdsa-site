@@ -4,7 +4,7 @@ import { SITE } from '@/lib/constants/site';
 
 const STATS = [
   { headline: '30+ YEARS', sub: 'of free roller skating' },
-  { headline: 'EVERY SUNDAY', sub: 'all summer long, rain or shine' },
+  { headline: 'ALL SUMMER LONG', sub: 'most Saturdays and Sundays' },
   { headline: '100%', sub: 'volunteer-run & community-funded' },
 ] as const;
 
@@ -24,6 +24,22 @@ const bodyStyle = {
   lineHeight: 1.6,
 } as const;
 
+const mvgHeadingStyle = {
+  fontFamily: FONTS.anton,
+  fontSize: FONT_SIZES.cardHeading,
+  color: '#ffffff',
+  lineHeight: 1.1,
+} as const;
+
+const mvgBodyStyle = {
+  fontFamily: FONTS.poppins,
+  fontWeight: FONT_WEIGHTS.regular,
+  fontSize: FONT_SIZES.body,
+  color: 'rgba(255,255,255,0.85)',
+  letterSpacing: '0.16px',
+  lineHeight: 1.6,
+} as const;
+
 export default function OurStoryTab() {
   return (
     <div className="flex flex-col w-full">
@@ -38,20 +54,13 @@ export default function OurStoryTab() {
         </div>
 
         <div className="flex flex-col gap-6 flex-1 pt-2">
-          <p style={headingStyle}>ABOUT THE CPDSA</p>
+          <p style={headingStyle} className="pt-8">ABOUT THE CPDSA</p>
           <div className="flex flex-col gap-4">
             <p style={bodyStyle}>
-              {SITE.orgLegalName} {SITE.orgDescription}
+              The Central Park Dance Skaters Association manages free roller skating sessions in partnership with the City Agencies—Parks Department, the Police Department and the Central Park Conservancy, obtaining all permits necessary to organize legally sanctioned, safe and secure events.
             </p>
             <p style={bodyStyle}>
-              Every Sunday from spring through fall, the Skater&apos;s Circle at Central Park comes alive with music,
-              movement, and community. We set up our DJ booth, roll out the sound system, and open the floor to
-              anyone who wants to skate — no tickets, no admission, no barriers.
-            </p>
-            <p style={bodyStyle}>
-              Driven entirely by volunteers and sustained by the generosity of our community, we have welcomed
-              skaters of every age, skill level, and background for over three decades. Whether you&apos;re a first-timer
-              lacing up or a seasoned dancer who&apos;s been coming since the &apos;90s, you belong here.
+              The CPDSA acts as a liaison between the skaters who enjoy attending the events and the City Agencies.
             </p>
           </div>
         </div>
@@ -59,7 +68,7 @@ export default function OurStoryTab() {
 
       {/* Green stat bar */}
       <div
-        className="flex w-full"
+        className="flex w-full px-4 py-6"
         style={{ backgroundColor: COLORS.brand.green }}
       >
         {STATS.map(({ headline, sub }, i) => (
@@ -67,7 +76,7 @@ export default function OurStoryTab() {
             key={headline}
             className="flex flex-col gap-1 flex-1 px-8 py-6"
             style={{
-              borderRight: i < STATS.length - 1 ? `2px solid ${COLORS.brand.yellow}` : undefined,
+              borderRight: i < STATS.length - 1 ? `1px solid ${COLORS.brand.yellow}` : undefined,
             }}
           >
             <p
@@ -101,61 +110,56 @@ export default function OurStoryTab() {
         style={{ backgroundColor: COLORS.brand.purple }}
       >
         {/* Left image */}
-        <div className="flex-shrink-0 w-[329px]">
+        <div className="flex-shrink-0 w-[329px] p-6">
           <img
             src="/about-mission-photo.jpg"
             alt="Community skaters at Central Park"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-[4px]"
           />
         </div>
 
-        {/* Three text columns */}
+        {/* Two text columns */}
         <div className="flex flex-1">
-          {[
-            {
-              heading: 'MISSION',
-              body: `To provide free, family-friendly roller skating and live music to the diverse communities of New York City, preserving a beloved Central Park tradition for generations to come.`,
-            },
-            {
-              heading: 'VISION',
-              body: `A Central Park where everyone — regardless of age, background, or ability — is welcome to dance, skate, and celebrate together every summer.`,
-            },
-            {
-              heading: 'GOALS',
-              body: `Grow our volunteer base, sustain free weekly programming, secure equipment for skaters in need, and deepen our roots in the communities that make Central Park home.`,
-            },
-          ].map(({ heading, body }, i) => (
-            <div
-              key={heading}
-              className="flex flex-col gap-3 flex-1 px-6 py-8"
-              style={{
-                borderLeft: i > 0 ? `1px solid rgba(255,255,255,0.2)` : undefined,
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: FONTS.anton,
-                  fontSize: FONT_SIZES.cardHeading,
-                  color: '#ffffff',
-                  lineHeight: 1.1,
-                }}
-              >
-                {heading}
-              </p>
-              <p
-                style={{
-                  fontFamily: FONTS.poppins,
-                  fontWeight: FONT_WEIGHTS.regular,
-                  fontSize: FONT_SIZES.body,
-                  color: 'rgba(255,255,255,0.85)',
-                  letterSpacing: '0.16px',
-                  lineHeight: 1.6,
-                }}
-              >
-                {body}
+          {/* Left column: Mission + Vision */}
+          <div className="flex flex-col gap-6 flex-1 px-6 py-8">
+            <div className="flex flex-col gap-3">
+              <p style={mvgHeadingStyle}>OUR MISSION</p>
+              <p style={mvgBodyStyle}>
+                Our mission is to offer present and future generations a free, open-air roller skating experience with live DJ music at &ldquo;The Skate Circle&rdquo; in New York City&rsquo;s Central Park, on most weekend days during the warmer months (April through October).
               </p>
             </div>
-          ))}
+            <div className="flex flex-col gap-3">
+              <p style={mvgHeadingStyle}>OUR VISION</p>
+              <p style={mvgBodyStyle}>
+                Our vision is to become a City institution so that the Skate Circle is designated as an official recreational area. This would include renaming &ldquo;Dead Road&rdquo;&mdash;the road segment of Central Park where the CPDSA sets up The Skate Circle&mdash;&ldquo;Skaters Road.&rdquo;
+              </p>
+            </div>
+          </div>
+
+          {/* Right column: Goals */}
+          <div
+            className="flex flex-col gap-3 flex-1 px-6 py-8"
+          >
+            <p style={mvgHeadingStyle}>OUR GOALS</p>
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1">
+                <p style={{ ...mvgBodyStyle, fontWeight: FONT_WEIGHTS.semibold, color: '#ffffff' }}>
+                  Short-term goals
+                </p>
+                <p style={mvgBodyStyle}>
+                  To enhance the experience of the skaters by refining the CPDSA operating guidelines, improving its sound system and continuing to book the best DJs who understand roller skating and what music keeps skaters rolling.
+                </p>
+              </div>
+              <div className="flex flex-col gap-1">
+                <p style={{ ...mvgBodyStyle, fontWeight: FONT_WEIGHTS.semibold, color: '#ffffff' }}>
+                  Long-term goals
+                </p>
+                <p style={mvgBodyStyle}>
+                  To work more closely with the City and Private Businesses to achieve sustainability and permanent status of City Recreational Area. This would include having The Skate Circle repaved, resurfaced and maintained to provide a smoother skating surface.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -94,7 +94,7 @@ export const GET_ARTISTS = gql`
 
 export const GET_DJS = gql`
   query GetAllDJs {
-    djs {
+    djs(first: 50) {
       nodes {
         title
         databaseId
@@ -115,7 +115,7 @@ export const GET_DJS = gql`
 
 export const GET_EVENTS = gql`
   query GetAllEvents {
-    skateEvents {
+    skateEvents(first: 50) {
       nodes {
         title
         databaseId

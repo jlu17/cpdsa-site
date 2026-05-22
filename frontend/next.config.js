@@ -4,6 +4,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'img.youtube.com' },
       { protocol: 'https', hostname: '*.wordpress.com' },
+      { protocol: 'https', hostname: 'cpdsa.org' },
       { protocol: 'http', hostname: 'localhost' },
     ],
   },

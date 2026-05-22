@@ -51,7 +51,7 @@ const bodyStyle = {
 
 export default function DirectionsTab() {
   return (
-    <div className="flex flex-col gap-8 p-6 w-[747px] flex-shrink-0">
+    <div className="flex flex-col gap-8 p-6 w-full sm:w-[747px] sm:flex-shrink-0">
       {/* Direction groups */}
       {DIRECTIONS.map(({ label, anchor, steps }) => (
         <div key={anchor} id={anchor} className="flex flex-col gap-3">

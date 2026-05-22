@@ -29,31 +29,29 @@ const bodyStyle = {
 
 export default function GuidelinesTab() {
   return (
-    <div className="flex flex-col gap-4 p-6 w-[747px] flex-shrink-0 self-stretch">
-      {/* Section heading */}
+    <div className="flex flex-col gap-4 p-6 w-full sm:w-[747px] sm:flex-shrink-0 sm:self-stretch">
+      {/* Section heading — desktop only (mobile heading rendered by TabSwitcher) */}
       <p
+        className="hidden sm:block"
         style={{
           fontFamily: FONTS.anton,
           fontSize: FONT_SIZES.sectionHeading,
           color: COLORS.text.body,
           lineHeight: 1.2,
-          whiteSpace: 'nowrap',
         }}
       >
         PLEASE READ BEFORE ARRIVAL
       </p>
 
       {/* Intro paragraphs */}
-      <div className="flex flex-col gap-4 w-[550px]">
+      <div className="flex flex-col gap-4 max-w-full">
         {INTRO_PARAGRAPHS.map((text) => (
           <p key={text} style={bodyStyle}>{text}</p>
         ))}
       </div>
 
       {/* Rules */}
-      <div
-        className="flex flex-col gap-1 pb-4 w-[521px]"
-      >
+      <div className="flex flex-col gap-1 pb-4 max-w-full">
         {RULES.map((rule) => (
           <p key={rule} style={bodyStyle}>{rule}</p>
         ))}

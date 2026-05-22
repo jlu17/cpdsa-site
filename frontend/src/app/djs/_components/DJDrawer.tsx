@@ -50,9 +50,8 @@ export default function DJDrawer({ dj, onClose }: { dj: DJ; onClose: () => void 
 
       {/* Panel */}
       <div
-        className="relative flex flex-col gap-6 overflow-y-auto px-8 py-10"
+        className="relative flex flex-col gap-6 overflow-y-auto px-8 py-10 w-full sm:w-[752px]"
         style={{
-          width: 752,
           height: '100%',
           backgroundColor: 'rgba(0,0,0,0.92)',
           transform: visible ? 'translateX(0)' : 'translateX(100%)',
@@ -86,23 +85,23 @@ export default function DJDrawer({ dj, onClose }: { dj: DJ; onClose: () => void 
           {djName}
         </p>
 
-        {/* Photo + bio */}
-        <div className="flex gap-6 items-start">
+        {/* Photo + bio — stacked on mobile, side-by-side on desktop */}
+        <div className="flex flex-col sm:flex-row gap-6 items-start">
           {photoUrl && (
-            <Image
-              src={photoUrl}
-              alt={altText}
-              width={301}
-              height={300}
-              className="flex-shrink-0 rounded-[4px] object-cover"
-            />
+            <div className="relative w-full sm:w-[301px] sm:h-[300px] sm:flex-shrink-0 aspect-square sm:aspect-auto rounded-[4px] overflow-hidden">
+              <Image
+                src={photoUrl}
+                alt={altText}
+                fill
+                className="object-cover"
+              />
+            </div>
           )}
           <p
             style={{
               fontFamily: FONTS.poppins,
               fontWeight: FONT_WEIGHTS.regular,
               fontSize: FONT_SIZES.body,
-              // Warm cream from Figma — only used in this dark context
               color: 'rgba(247,223,223,0.9)',
               letterSpacing: '0.16px',
               lineHeight: 1.6,

@@ -17,7 +17,7 @@ export default function DJGrid({ djs }: { djs: DJ[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-2 w-full px-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 w-full px-6">
         {sorted.map((dj) => (
           <DJCard key={dj.databaseId} dj={dj} onClick={() => setSelectedDj(dj)} />
         ))}

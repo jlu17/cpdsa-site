@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "cd .. && git config core.hooksPath frontend/.husky || true"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "next lint --fix --file"
   },
   "dependencies": {
     "graphql": "^16.14.0",
@@ -22,6 +26,10 @@
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.5.0",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "postcss": "^8.5.15",
     "tailwindcss": "^4.3.0",
     "typescript": "^5.0.0"

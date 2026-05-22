@@ -1,78 +1,24 @@
 import Link from 'next/link';
 import { PiggyBank } from 'lucide-react';
-import { getUpcomingEvents } from '@/lib/graphql';
+import { getEvents } from '@/lib/graphql';
+import { splitEvents } from './schedule/_components/scheduleUtils';
+import ThisWeekSection from './schedule/_components/ThisWeekSection';
 
 const communityPhoto = '/community-photo.jpg';
 const mapPhoto = '/map-photo.jpg';
 const volunteersPhoto = '/volunteers-photo.jpg';
 const skatesPhoto = '/skates-photo.jpg';
 
-function formatEventDate(dateStr: string) {
-  const d = new Date(dateStr);
-  return {
-    weekday: d.toLocaleDateString('en-US', { weekday: 'long' }),
-    monthDay: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-  };
-}
-
 export default async function Home() {
-  const events = await getUpcomingEvents();
-  const next2 = events.slice(0, 2);
+  const events = await getEvents();
+  const { thisWeek, upcoming } = splitEvents(events);
+  const displayEvents = thisWeek.length > 0 ? thisWeek : upcoming.slice(0, 2);
 
   return (
     <>
       {/* ── Upcoming Schedule ── */}
-      <section className="w-full">
-        {/* Heading */}
-        <div className="flex items-center h-[34px] px-6">
-          <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 700, fontSize: 20, lineHeight: '40px', letterSpacing: '-0.5px' }}>
-            Upcoming Schedule
-          </p>
-        </div>
-
-        {/* Two event columns */}
-        <div className="flex w-full">
-          {next2.map((event, i) => {
-            const { weekday, monthDay } = formatEventDate(event.date);
-            const djName = event.eventFields?.djName ?? event.title;
-            const isFirst = i === 0;
-
-            return (
-              <div
-                key={event.id}
-                className="flex flex-col items-start justify-end px-6 py-4 flex-1"
-                style={isFirst ? { borderRight: '2px solid #6633CC' } : {}}
-              >
-                {/* Date row */}
-                <div className="flex items-center gap-3 mb-1">
-                  <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4.82143 0C5.3558 0 5.78571 0.445833 5.78571 1V2.66667H12.2143V1C12.2143 0.445833 12.6442 0 13.1786 0C13.7129 0 14.1429 0.445833 14.1429 1V2.66667H15.4286C16.8469 2.66667 18 3.8625 18 5.33333V17.3333C18 18.8042 16.8469 20 15.4286 20H2.57143C1.15313 20 0 18.8042 0 17.3333V5.33333C0 3.8625 1.15313 2.66667 2.57143 2.66667H3.85714V1C3.85714 0.445833 4.28705 0 4.82143 0ZM15.4286 18C15.7821 18 16.0714 17.7 16.0714 17.3333V14.6667H12.5357V18H15.4286ZM16.0714 12.6667V9.33333H12.5357V12.6667H16.0714ZM10.6071 12.6667V9.33333H7.39286V12.6667H10.6071ZM5.46429 12.6667V9.33333H1.92857V12.6667H5.46429ZM1.92857 14.6667V17.3333C1.92857 17.7 2.21786 18 2.57143 18H5.46429V14.6667H1.92857ZM7.39286 14.6667V18H10.6071V14.6667H7.39286ZM4.82143 4.66667H2.57143C2.21786 4.66667 1.92857 4.96667 1.92857 5.33333V7.33333H16.0714V5.33333C16.0714 4.96667 15.7821 4.66667 15.4286 4.66667H4.82143Z" fill="#6633CC"/>
-                  </svg>
-                  <p
-                    className="uppercase whitespace-nowrap"
-                    style={{ fontFamily: 'var(--font-poppins)', fontWeight: 600, fontSize: 16, lineHeight: '20px', letterSpacing: '0.49px', color: '#204630' }}
-                  >
-                    {weekday}, {monthDay}
-                    <br />
-                    2:45 – 6:45 PM
-                  </p>
-                </div>
-
-                {/* Giant DJ name */}
-                <div
-                  className="min-w-full overflow-x-hidden"
-                  style={{
-                    fontFamily: 'var(--font-anton)',
-                    fontSize: 100,
-                    color: '#6633CC',
-                  }}
-                >
-                  <p>{djName}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      <section className="w-full flex flex-col">
+        <ThisWeekSection events={displayEvents} heading="Upcoming Schedule" />
 
         {/* See full Schedule button */}
         <div className="flex items-center h-[75px] px-6">

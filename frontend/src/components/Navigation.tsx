@@ -51,7 +51,7 @@ export default function Navigation() {
         </nav>
 
         <Link
-          href="/donate"
+          href="/join"
           className="hidden md:inline-flex items-center gap-2 h-10 px-4 rounded-full text-white text-sm whitespace-nowrap"
           style={{ backgroundColor: COLORS.brand.purple, fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.medium }}
         >
@@ -80,7 +80,7 @@ export default function Navigation() {
             </Link>
           ))}
           <Link
-            href="/donate"
+            href="/join"
             onClick={() => setOpen(false)}
             className="inline-flex items-center gap-2 h-10 px-4 rounded-full text-white w-fit"
             style={{ backgroundColor: COLORS.brand.purple }}

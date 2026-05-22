@@ -1,3 +1,5 @@
+'use client';
+
 import { CalendarDays } from 'lucide-react';
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
@@ -6,7 +8,15 @@ import { formatThisWeekDate, EVENT_TIME } from './scheduleUtils';
 
 const DATE_COLOR = '#204630';
 
-export default function ThisWeekSection({ events, onDjClick }: { events: SkateEvent[]; onDjClick?: (name: string) => void }) {
+function djFontSize(name: string): number {
+  const len = name.length;
+  if (len <= 14) return 120;
+  if (len <= 20) return 100;
+  if (len <= 26) return 84;
+  return 72;
+}
+
+export default function ThisWeekSection({ events, onDjClick, heading = 'This week' }: { events: SkateEvent[]; onDjClick?: (name: string) => void; heading?: string }) {
   if (events.length === 0) return null;
 
   return (
@@ -19,7 +29,7 @@ export default function ThisWeekSection({ events, onDjClick }: { events: SkateEv
           color: COLORS.text.primary,
           letterSpacing: '-0.5px',
         }}>
-          This week
+          {heading}
         </p>
       </div>
 
@@ -60,7 +70,7 @@ export default function ThisWeekSection({ events, onDjClick }: { events: SkateEv
               onClick={() => onDjClick?.(event.title)}
               style={{
                 fontFamily: FONTS.anton,
-                fontSize: 120,
+                fontSize: djFontSize(event.title),
                 color: COLORS.brand.purple,
                 letterSpacing: '0.26px',
                 cursor: onDjClick ? 'pointer' : undefined,

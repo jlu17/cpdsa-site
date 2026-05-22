@@ -6,7 +6,7 @@ interface PageHeroProps {
   color?: string;
 }
 
-export default function PageHero({ title, color = COLORS.brand.yellow }: PageHeroProps) {
+export default function PageHero({ title, color = COLORS.brand.purple }: PageHeroProps) {
   return (
     <div className="w-full px-6">
       <p

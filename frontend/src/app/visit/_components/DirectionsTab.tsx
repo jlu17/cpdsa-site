@@ -36,7 +36,7 @@ const DIRECTIONS: Direction[] = [
     steps: [
       'Enter at Columbus Circle (59th St) or any southern entrance.',
       'Follow the main path north toward the Mall and Literary Walk.',
-      'The Skate Circle is at the north end of the Literary Walk.',
+      'The Skate Circle is at the north end of the Literary Walk on the left.',
     ],
   },
 ];
@@ -52,24 +52,13 @@ const bodyStyle = {
 export default function DirectionsTab() {
   return (
     <div className="flex flex-col gap-8 p-6 w-[747px] flex-shrink-0">
-      {/* Google Maps link */}
-      <a
-        href={SITE.googleMapsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center h-10 px-4 rounded-full text-white text-sm self-start"
-        style={{ backgroundColor: COLORS.brand.purple, fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.medium }}
-      >
-        Open in Google Maps
-      </a>
-
       {/* Direction groups */}
       {DIRECTIONS.map(({ label, anchor, steps }) => (
         <div key={anchor} id={anchor} className="flex flex-col gap-3">
           <p
             style={{
               fontFamily: FONTS.anton,
-              fontSize: FONT_SIZES.sectionHeading,
+              fontSize: 36,
               color: COLORS.text.body,
               lineHeight: 1.2,
             }}
@@ -84,23 +73,6 @@ export default function DirectionsTab() {
         </div>
       ))}
 
-      {/* Map */}
-      <div className="relative rounded-[4px] overflow-hidden w-full h-[420px]">
-        <img
-          src="/skate-circle-aerial.jpg"
-          alt="Aerial view of the Skater's Circle in Central Park"
-          className="w-full h-full object-cover"
-        />
-        <a
-          href={SITE.googleMapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute top-4 left-4 flex items-center justify-center h-10 px-4 rounded-full bg-black text-white text-sm"
-          style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.medium }}
-        >
-          Google Maps
-        </a>
-      </div>
     </div>
   );
 }

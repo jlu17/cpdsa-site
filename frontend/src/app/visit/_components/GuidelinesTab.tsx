@@ -50,10 +50,9 @@ export default function GuidelinesTab() {
         ))}
       </div>
 
-      {/* Rules — separated by bottom border */}
+      {/* Rules */}
       <div
         className="flex flex-col gap-1 pb-4 w-[521px]"
-        style={{ borderBottom: `1px solid ${COLORS.border.default}` }}
       >
         {RULES.map((rule) => (
           <p key={rule} style={bodyStyle}>{rule}</p>

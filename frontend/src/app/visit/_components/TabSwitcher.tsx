@@ -48,9 +48,23 @@ export default function TabSwitcher() {
       </div>
 
       {/* Content */}
-      <div className="flex items-start w-full rounded-[4px]">
+      <div className="flex items-start w-full rounded-[4px] pb-8">
         {active === 'guidelines' ? <GuidelinesTab /> : <DirectionsTab />}
-        <SkateMap />
+
+        {active === 'guidelines' ? (
+          <SkateMap />
+        ) : (
+          <div className="relative flex-1 overflow-hidden rounded-[4px]" style={{ height: 424 }}>
+            <iframe
+              src="https://maps.google.com/maps?q=Skater%27s+Circle+Central+Park+New+York+NY&output=embed&z=16"
+              className="w-full h-full border-0"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Skater's Circle, Central Park"
+            />
+          </div>
+        )}
       </div>
     </>
   );

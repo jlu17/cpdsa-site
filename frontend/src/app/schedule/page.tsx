@@ -17,7 +17,6 @@ export default async function SchedulePage() {
 
   return (
     <div className="flex flex-col gap-6 items-center pt-6 w-full">
-      <PageHero title="SCHEDULE" color={COLORS.brand.purple} />
       <ScheduleWithDrawer thisWeek={thisWeek} upcoming={upcoming} djs={djs} />
     </div>
   );

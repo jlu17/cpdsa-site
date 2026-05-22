@@ -1,7 +1,7 @@
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatUpcomingDate, pairUp, EVENT_TIME } from './scheduleUtils';
+import { formatUpcomingDate, pairUp, EVENT_TIME, upcomingDjFontSize } from './scheduleUtils';
 
 const DATE_COLOR = '#204630';
 
@@ -11,7 +11,7 @@ export default function UpcomingSection({ events, onDjClick }: { events: SkateEv
   const rows = pairUp(events);
 
   return (
-    <section className="w-full flex flex-col">
+    <section className="w-full flex flex-col pb-12">
       <div className="px-6 py-2 h-[42px] flex items-center">
         <p style={{
           fontFamily: FONTS.poppins,
@@ -80,7 +80,7 @@ function EventCell({
         onClick={() => onDjClick?.(event.title)}
         style={{
           fontFamily: FONTS.anton,
-          fontSize: FONT_SIZES.scheduleEvent,
+          fontSize: upcomingDjFontSize(event.title),
           color: COLORS.brand.green,
           letterSpacing: '0.26px',
           cursor: onDjClick ? 'pointer' : undefined,

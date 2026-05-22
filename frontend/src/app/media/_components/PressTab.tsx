@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { SkateVideo } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_WEIGHTS, FONT_SIZES } from '@/lib/constants/typography';
@@ -44,7 +45,7 @@ function VideoCard({ video }: { video: SkateVideo }) {
       ) : (
         <>
           {thumbnail ? (
-            <img src={thumbnail} alt={video.skateVideo.videoTitle} className="absolute inset-0 w-full h-full object-cover" />
+            <Image src={thumbnail} alt={video.skateVideo.videoTitle} fill className="object-cover" />
           ) : (
             <div className="absolute inset-0 bg-gray-800" />
           )}

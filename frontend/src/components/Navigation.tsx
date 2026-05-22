@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { PiggyBank, Menu, X } from 'lucide-react';
@@ -19,9 +20,11 @@ export default function Navigation() {
     <header className="bg-white sticky top-0 z-50">
       <div className="max-w-[1440px] mx-auto h-[80px] flex items-center gap-4 px-6">
         <Link href="/" className="flex-shrink-0">
-          <img
+          <Image
             src="/cpdsa-logo.png"
             alt="CPDSA"
+            height={60}
+            width={48}
             className="h-[60px] w-auto"
             style={{ mixBlendMode: 'multiply' }}
           />

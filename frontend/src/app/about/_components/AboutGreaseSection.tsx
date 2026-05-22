@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
 import { SITE } from '@/lib/constants/site';
@@ -11,11 +12,12 @@ export default function AboutGreaseSection() {
       style={{ backgroundColor: LAVENDER }}
     >
       {/* Photo */}
-      <div className="flex-shrink-0 w-[560px]" style={{ minHeight: 480 }}>
-        <img
+      <div className="flex-shrink-0 w-[560px] relative" style={{ minHeight: 480 }}>
+        <Image
           src="/about-grease-photo.jpg"
           alt="CPDSA volunteers at the Skater's Circle"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
         />
       </div>
 

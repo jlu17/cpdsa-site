@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
 
@@ -56,10 +57,11 @@ export default function DJGreaseSection() {
 
       {/* Photo */}
       <div className="flex-1 relative" style={{ minHeight: 368 }}>
-        <img
+        <Image
           src="/djs-grease-photo.jpg"
           alt="CPDSA volunteers and community at the Skater's Circle"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          className="object-cover"
         />
       </div>
     </div>

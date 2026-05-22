@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
 import { SITE } from '@/lib/constants/site';
@@ -50,11 +51,12 @@ export default function AboutSkateMaintenanceSection() {
       </div>
 
       {/* Photo */}
-      <div className="flex-shrink-0 w-[560px] overflow-hidden" style={{ height: 420 }}>
-        <img
+      <div className="flex-shrink-0 w-[560px] relative overflow-hidden" style={{ height: 420 }}>
+        <Image
           src="/about-skate-maintenance.jpg"
           alt="Close-up of roller skates being maintained"
-          className="w-full h-full object-cover object-bottom"
+          fill
+          className="object-cover object-bottom"
           style={{ filter: 'grayscale(100%)' }}
         />
       </div>

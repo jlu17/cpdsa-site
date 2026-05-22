@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { PiggyBank } from 'lucide-react';
 import { getEvents } from '@/lib/graphql';
 import { splitEvents } from './schedule/_components/scheduleUtils';
@@ -61,6 +62,7 @@ export default async function Home() {
 
         {/* Right: photo */}
         <div className="flex-1 relative overflow-hidden rounded-[4px] min-h-[327px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={communityPhoto}
             alt="CPDSA community"
@@ -102,10 +104,11 @@ export default async function Home() {
 
         {/* Right: Map */}
         <div className="flex-1 relative h-[424px]">
-          <img
+          <Image
             src={mapPhoto}
             alt="Map of the Skate Circle in Central Park"
-            className="absolute inset-0 w-full h-full object-cover rounded-[4px]"
+            fill
+            className="object-cover rounded-[4px]"
           />
           <a
             href="https://maps.google.com/?q=Skaters+Circle+Central+Park+New+York"
@@ -123,6 +126,7 @@ export default async function Home() {
       <section className="flex w-full rounded-[4px] h-[368px]">
         {/* Left: photo */}
         <div className="flex-1 relative overflow-hidden rounded-[4px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={volunteersPhoto}
             alt="CPDSA volunteers"
@@ -190,6 +194,7 @@ export default async function Home() {
 
         {/* Right: b&w skates photo */}
         <div className="w-1/2 relative overflow-hidden rounded-[4px] h-[315px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={skatesPhoto}
             alt="Roller skates"

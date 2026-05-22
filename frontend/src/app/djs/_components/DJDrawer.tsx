@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { X } from 'lucide-react';
 import { DJ } from '@/lib/graphql';
 import { FONTS, FONT_WEIGHTS, FONT_SIZES } from '@/lib/constants/typography';
@@ -88,11 +89,12 @@ export default function DJDrawer({ dj, onClose }: { dj: DJ; onClose: () => void 
         {/* Photo + bio */}
         <div className="flex gap-6 items-start">
           {photoUrl && (
-            <img
+            <Image
               src={photoUrl}
               alt={altText}
+              width={301}
+              height={300}
               className="flex-shrink-0 rounded-[4px] object-cover"
-              style={{ width: 301, height: 300 }}
             />
           )}
           <p

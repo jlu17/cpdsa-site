@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
 import { SITE } from '@/lib/constants/site';
@@ -52,10 +53,11 @@ export default function DJSkateSection() {
 
       {/* Photo */}
       <div className="flex-1 relative" style={{ minHeight: 315 }}>
-        <img
+        <Image
           src="/djs-skate-maintenance.jpg"
           alt="Roller skates being maintained"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          className="object-cover"
           style={{ filter: 'grayscale(100%)' }}
         />
       </div>

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
 
@@ -57,11 +58,12 @@ export default function OurHistoryTab() {
   return (
     <div className="flex gap-6 items-start pl-12 pr-24 py-8">
       {/* Left image */}
-      <div className="flex-shrink-0 w-[400px] rounded-[4px] overflow-hidden" style={{ minHeight: 600 }}>
-        <img
+      <div className="flex-shrink-0 w-[400px] relative rounded-[4px] overflow-hidden" style={{ minHeight: 600 }}>
+        <Image
           src="/about-history-photo.jpg"
           alt="Vintage roller skating at Central Park"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
         />
       </div>
 

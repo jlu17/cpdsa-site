@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { DJ } from '@/lib/graphql';
 import { FONTS } from '@/lib/constants/typography';
 
@@ -15,10 +16,11 @@ export default function DJCard({ dj, onClick }: { dj: DJ; onClick: () => void })
       onKeyDown={(e) => e.key === 'Enter' && onClick()}
     >
       {photoUrl && (
-        <img
+        <Image
           src={photoUrl}
           alt={altText}
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          className="object-cover"
         />
       )}
 

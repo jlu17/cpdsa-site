@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
 import { SITE } from '@/lib/constants/site';
@@ -45,11 +46,12 @@ export default function OurStoryTab() {
     <div className="flex flex-col w-full">
       {/* About the CPDSA — image + text */}
       <div className="flex items-start gap-8 px-6 py-8">
-        <div className="flex-shrink-0 w-[598px] rounded-[4px] overflow-hidden" style={{ height: 420 }}>
-          <img
+        <div className="flex-shrink-0 w-[598px] relative rounded-[4px] overflow-hidden" style={{ height: 420 }}>
+          <Image
             src="/about-cpdsa-photo.jpg"
             alt="Skaters at the Skater's Circle in Central Park"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
           />
         </div>
 
@@ -110,12 +112,15 @@ export default function OurStoryTab() {
         style={{ backgroundColor: COLORS.brand.purple }}
       >
         {/* Left image */}
-        <div className="flex-shrink-0 w-[329px] p-6">
-          <img
-            src="/about-mission-photo.jpg"
-            alt="Community skaters at Central Park"
-            className="w-full h-full object-cover rounded-[4px]"
-          />
+        <div className="flex-shrink-0 w-[329px] p-6 self-stretch">
+          <div className="relative w-full h-full rounded-[4px] overflow-hidden">
+            <Image
+              src="/about-mission-photo.jpg"
+              alt="Community skaters at Central Park"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
 
         {/* Two text columns */}

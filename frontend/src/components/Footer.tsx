@@ -70,7 +70,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex items-center justify-between w-full">
-          <p className="text-xs whitespace-nowrap" style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.medium, color: COLORS.text.footerMuted, letterSpacing: '-0.15px' }}>
+          <p className="text-xs" style={{ fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.medium, color: COLORS.text.footerMuted, letterSpacing: '-0.15px' }}>
             © {new Date().getFullYear()} {SITE.fullName}. All rights reserved.
           </p>
         </div>

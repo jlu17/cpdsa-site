@@ -1,7 +1,7 @@
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatUpcomingDate, EVENT_TIME, upcomingDjFontSize } from './scheduleUtils';
+import { formatUpcomingDate, EVENT_TIME, upcomingDjFontSize, upcomingDjFontSizeMobile } from './scheduleUtils';
 
 const DATE_COLOR = '#204630';
 
@@ -47,10 +47,9 @@ function EventCell({
 }) {
   return (
     <div
-      className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2 border-t border-black/15${
+      className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2 min-h-[100px] sm:min-h-[180px] border-t border-black/15${
         isLeft ? ' sm:border-r sm:border-r-black/15' : ''
       }`}
-      style={{ minHeight: 180 }}
     >
       {/* Date + time */}
       <p style={{
@@ -67,9 +66,22 @@ function EventCell({
         {EVENT_TIME}
       </p>
 
-      {/* DJ name */}
+      {/* DJ name — smaller on mobile, larger on desktop */}
       <p
-        className="uppercase leading-[1.05] min-w-full"
+        className="block sm:hidden uppercase leading-[1.05] w-full"
+        onClick={() => onDjClick?.(event.title)}
+        style={{
+          fontFamily: FONTS.anton,
+          fontSize: upcomingDjFontSizeMobile(event.title),
+          color: COLORS.brand.green,
+          letterSpacing: '0.26px',
+          cursor: onDjClick ? 'pointer' : undefined,
+        }}
+      >
+        {event.title}
+      </p>
+      <p
+        className="hidden sm:block uppercase leading-[1.05] w-full"
         onClick={() => onDjClick?.(event.title)}
         style={{
           fontFamily: FONTS.anton,

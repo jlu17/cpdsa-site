@@ -1,57 +1,20 @@
-import Image from 'next/image';
+import GreaseSection from '@/components/GreaseSection';
 import { COLORS } from '@/lib/constants/colors';
-import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
+import { FONTS, FONT_WEIGHTS } from '@/lib/constants/typography';
 import { SITE } from '@/lib/constants/site';
 
 const LAVENDER = '#db9fff';
 
 export default function AboutGreaseSection() {
   return (
-    <div
-      className="flex flex-col sm:flex-row items-stretch w-full"
-      style={{ backgroundColor: LAVENDER }}
-    >
-      {/* Photo */}
-      <div className="w-full h-[300px] sm:flex-shrink-0 sm:w-[560px] sm:h-auto sm:min-h-[480px] relative">
-        <Image
-          src="/about-grease-photo.jpg"
-          alt="CPDSA volunteers at the Skater's Circle"
-          fill
-          className="object-cover"
-        />
-      </div>
-
-      {/* Text */}
-      <div className="flex flex-col justify-center gap-6 px-6 py-8 sm:px-12 sm:py-10 flex-1">
-        <p
-          style={{
-            fontFamily: FONTS.anton,
-            fontSize: FONT_SIZES.sectionHeading,
-            color: COLORS.text.body,
-            lineHeight: 1.1,
-          }}
-        >
-          GREASE THE WHEELS
-        </p>
-
-        <div className="flex flex-col gap-4">
-          <p
-            style={{
-              fontFamily: FONTS.poppins,
-              fontWeight: FONT_WEIGHTS.regular,
-              fontSize: FONT_SIZES.body,
-              color: COLORS.text.body,
-              letterSpacing: '0.16px',
-              lineHeight: 1.6,
-            }}
-          >
-            We are a nonprofit organization, and memberships and donations allow us to pay for permits, 
-            sound equipment, and other essential operating costs necessary to keep the CPDSA Skate Circle 
-            rolling. Without your support there is no Skate Circle.
-          </p>
-        </div>
-
-        <div className="flex gap-4">
+    <GreaseSection
+      photoSrc="/about-grease-photo.jpg"
+      photoAlt="CPDSA volunteers at the Skater's Circle"
+      bgColor={LAVENDER}
+      photoSide="left"
+      textColor={COLORS.text.body}
+      buttons={
+        <>
           <a
             href={SITE.volunteerFormUrl}
             target="_blank"
@@ -79,8 +42,8 @@ export default function AboutGreaseSection() {
           >
             Donate
           </a>
-        </div>
-      </div>
-    </div>
+        </>
+      }
+    />
   );
 }

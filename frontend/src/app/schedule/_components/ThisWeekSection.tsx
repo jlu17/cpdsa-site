@@ -4,7 +4,7 @@ import { CalendarDays } from 'lucide-react';
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatThisWeekDate, EVENT_TIME } from './scheduleUtils';
+import { formatThisWeekDate, EVENT_TIME, djFontSizeMobile } from './scheduleUtils';
 
 const DATE_COLOR = '#204630';
 
@@ -37,12 +37,11 @@ export default function ThisWeekSection({ events, onDjClick, heading = 'This wee
         {events.map((event, i) => (
           <div
             key={event.databaseId}
-            className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2${
+            className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2 min-h-[130px] sm:min-h-[235px]${
               i % 2 === 0
                 ? ' border-b-2 border-[#6633cc] sm:border-b-0 sm:border-r-2'
                 : ''
             }`}
-            style={{ minHeight: 235 }}
           >
             {/* Date + time */}
             <div className="flex items-start gap-3 mb-1">
@@ -64,9 +63,22 @@ export default function ThisWeekSection({ events, onDjClick, heading = 'This wee
               </p>
             </div>
 
-            {/* DJ name */}
+            {/* DJ name — smaller on mobile, larger on desktop */}
             <p
-              className="uppercase leading-[1.05] min-w-full"
+              className="block sm:hidden uppercase leading-[1.05] w-full"
+              onClick={() => onDjClick?.(event.title)}
+              style={{
+                fontFamily: FONTS.anton,
+                fontSize: djFontSizeMobile(event.title),
+                color: COLORS.brand.purple,
+                letterSpacing: '0.26px',
+                cursor: onDjClick ? 'pointer' : undefined,
+              }}
+            >
+              {event.title}
+            </p>
+            <p
+              className="hidden sm:block uppercase leading-[1.05] w-full"
               onClick={() => onDjClick?.(event.title)}
               style={{
                 fontFamily: FONTS.anton,

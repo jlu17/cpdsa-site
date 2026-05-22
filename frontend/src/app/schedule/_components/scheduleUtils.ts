@@ -68,6 +68,24 @@ export function upcomingDjFontSize(name: string): number {
   return 56;
 }
 
+/** Mobile font sizes for This Week section (full-width cells, ~312px content). */
+export function djFontSizeMobile(name: string): number {
+  const len = name.length;
+  if (len <= 14) return 56;
+  if (len <= 20) return 48;
+  if (len <= 26) return 40;
+  return 36;
+}
+
+/** Mobile font sizes for Upcoming section. */
+export function upcomingDjFontSizeMobile(name: string): number {
+  const len = name.length;
+  if (len <= 12) return 48;
+  if (len <= 16) return 42;
+  if (len <= 22) return 36;
+  return 32;
+}
+
 /** Group an array into consecutive pairs: [a,b,c,d,e] → [[a,b],[c,d],[e,null]] */
 export function pairUp<T>(arr: T[]): [T, T | null][] {
   const pairs: [T, T | null][] = [];

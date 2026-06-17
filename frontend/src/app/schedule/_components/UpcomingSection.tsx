@@ -78,6 +78,7 @@ function EventCell({
         color={COLORS.brand.green}
         cancelled={event.eventFields.isEventCanceled ?? false}
         cancelReason={event.eventFields.eventCancelationReason}
+        helperText={event.eventFields.eventHelperText}
       />
     </div>
   );

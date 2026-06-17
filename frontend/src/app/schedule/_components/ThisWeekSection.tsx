@@ -67,6 +67,7 @@ export default function ThisWeekSection({ events, onDjClick, heading = 'This wee
               color={COLORS.brand.purple}
               cancelled={event.eventFields.isEventCanceled ?? false}
               cancelReason={event.eventFields.eventCancelationReason}
+              helperText={event.eventFields.eventHelperText}
             />
           </div>
         ))}

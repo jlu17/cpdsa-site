@@ -53,6 +53,14 @@ export interface DJ {
         altText: string;
       };
     } | null;
+    djSocials: {
+      djInstagramLink: string | null;
+      djSoundcloudLink: string | null;
+      djMixcloudLink: string | null;
+      djYoutubeLink: string | null;
+      djFacebookLink: string | null;
+      djWebsiteLink: string | null;
+    } | null;
   };
 }
 
@@ -94,7 +102,7 @@ export const GET_ARTISTS = gql`
 
 export const GET_DJS = gql`
   query GetAllDJs {
-    djs(first: 50) {
+    djs(first: 100) {
       nodes {
         title
         databaseId
@@ -106,6 +114,14 @@ export const GET_DJS = gql`
               sourceUrl
               altText
             }
+          }
+          djSocials {
+            djInstagramLink
+            djSoundcloudLink
+            djMixcloudLink
+            djYoutubeLink
+            djFacebookLink
+            djWebsiteLink
           }
         }
       }

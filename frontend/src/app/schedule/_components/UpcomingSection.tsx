@@ -1,7 +1,9 @@
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatUpcomingDate, EVENT_TIME, upcomingDjFontSize, getEventDjNames } from './scheduleUtils';
+import { formatUpcomingDate, EVENT_TIME, getEventDjNames } from './scheduleUtils';
+
+const DJ_FONT_SIZE = 56;
 import DJNameDisplay from './DJNameDisplay';
 
 const DATE_COLOR = '#204630';
@@ -48,7 +50,7 @@ function EventCell({
 }) {
   return (
     <div
-      className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2 min-h-[100px] sm:min-h-[180px] border-t border-black/15${
+      className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2 border-t border-black/15${
         isLeft ? ' sm:border-r sm:border-r-black/15' : ''
       }`}
     >
@@ -68,19 +70,15 @@ function EventCell({
       </p>
 
       {/* DJ name(s) */}
-      {(() => {
-        const names = getEventDjNames(event);
-        const displayStr = names.join(' B2B ');
-        return (
-          <DJNameDisplay
-            names={names}
-            onDjClick={onDjClick}
-            mobileFontSize={48}
-            desktopFontSize={upcomingDjFontSize(displayStr)}
-            color={COLORS.brand.green}
-          />
-        );
-      })()}
+      <DJNameDisplay
+        names={getEventDjNames(event)}
+        onDjClick={onDjClick}
+        mobileFontSize={48}
+        desktopFontSize={DJ_FONT_SIZE}
+        color={COLORS.brand.green}
+        cancelled={event.eventFields.isEventCanceled ?? false}
+        cancelReason={event.eventFields.eventCancelationReason}
+      />
     </div>
   );
 }

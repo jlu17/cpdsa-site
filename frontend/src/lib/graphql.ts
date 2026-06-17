@@ -28,6 +28,8 @@ export interface SkateEvent {
   databaseId: number;
   eventFields: {
     eventDate: string; // ISO 8601 e.g. "2026-06-28T00:00:00+00:00"
+    isEventCanceled: boolean | null;
+    eventCancelationReason: string | null;
     eventDjs: Array<{
       eventDj: {
         edges: Array<{
@@ -137,6 +139,8 @@ export const GET_EVENTS = gql`
         databaseId
         eventFields {
           eventDate
+          isEventCanceled
+          eventCancelationReason
           eventDjs {
             eventDj {
               edges {

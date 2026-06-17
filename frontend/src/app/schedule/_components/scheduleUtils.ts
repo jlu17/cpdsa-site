@@ -67,15 +67,6 @@ export function formatUpcomingDate(dateStr: string): string {
   return `${month} ${day}, ${weekday}`.toUpperCase();
 }
 
-/** Scales down the DJ name font size for the Upcoming section so long single words stay in column. */
-export function upcomingDjFontSize(name: string): number {
-  const len = name.length;
-  if (len <= 12) return 92;
-  if (len <= 16) return 80;
-  if (len <= 22) return 68;
-  return 56;
-}
-
 
 /** Group an array into consecutive pairs: [a,b,c,d,e] → [[a,b],[c,d],[e,null]] */
 export function pairUp<T>(arr: T[]): [T, T | null][] {

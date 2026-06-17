@@ -6,6 +6,8 @@ import ScheduleWithDrawer from './_components/ScheduleWithDrawer';
 import { splitEvents } from './_components/scheduleUtils';
 import { COLORS } from '@/lib/constants/colors';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: `Schedule — ${SITE.shortName}`,
   description: 'See who\'s spinning at the Skater\'s Circle in Central Park this week and all season long.',

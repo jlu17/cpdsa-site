@@ -4,7 +4,7 @@ import { CalendarDays } from 'lucide-react';
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatThisWeekDate, EVENT_TIME, djFontSizeMobile } from './scheduleUtils';
+import { formatThisWeekDate, EVENT_TIME } from './scheduleUtils';
 
 const DATE_COLOR = '#204630';
 
@@ -69,7 +69,7 @@ export default function ThisWeekSection({ events, onDjClick, heading = 'This wee
               onClick={() => onDjClick?.(event.title)}
               style={{
                 fontFamily: FONTS.anton,
-                fontSize: djFontSizeMobile(event.title),
+                fontSize: 56,
                 color: COLORS.brand.purple,
                 letterSpacing: '0.26px',
                 cursor: onDjClick ? 'pointer' : undefined,

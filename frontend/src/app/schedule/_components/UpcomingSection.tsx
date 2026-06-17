@@ -1,7 +1,7 @@
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatUpcomingDate, EVENT_TIME, upcomingDjFontSize, upcomingDjFontSizeMobile } from './scheduleUtils';
+import { formatUpcomingDate, EVENT_TIME, upcomingDjFontSize } from './scheduleUtils';
 
 const DATE_COLOR = '#204630';
 
@@ -72,7 +72,7 @@ function EventCell({
         onClick={() => onDjClick?.(event.title)}
         style={{
           fontFamily: FONTS.anton,
-          fontSize: upcomingDjFontSizeMobile(event.title),
+          fontSize: 48,
           color: COLORS.brand.green,
           letterSpacing: '0.26px',
           cursor: onDjClick ? 'pointer' : undefined,

@@ -1,7 +1,8 @@
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatUpcomingDate, EVENT_TIME, upcomingDjFontSize } from './scheduleUtils';
+import { formatUpcomingDate, EVENT_TIME, upcomingDjFontSize, getEventDjNames } from './scheduleUtils';
+import DJNameDisplay from './DJNameDisplay';
 
 const DATE_COLOR = '#204630';
 
@@ -66,33 +67,20 @@ function EventCell({
         {EVENT_TIME}
       </p>
 
-      {/* DJ name — smaller on mobile, larger on desktop */}
-      <p
-        className="block sm:hidden uppercase leading-[1.05] w-full"
-        onClick={() => onDjClick?.(event.title)}
-        style={{
-          fontFamily: FONTS.anton,
-          fontSize: 48,
-          color: COLORS.brand.green,
-          letterSpacing: '0.26px',
-          cursor: onDjClick ? 'pointer' : undefined,
-        }}
-      >
-        {event.title}
-      </p>
-      <p
-        className="hidden sm:block uppercase leading-[1.05] w-full"
-        onClick={() => onDjClick?.(event.title)}
-        style={{
-          fontFamily: FONTS.anton,
-          fontSize: upcomingDjFontSize(event.title),
-          color: COLORS.brand.green,
-          letterSpacing: '0.26px',
-          cursor: onDjClick ? 'pointer' : undefined,
-        }}
-      >
-        {event.title}
-      </p>
+      {/* DJ name(s) */}
+      {(() => {
+        const names = getEventDjNames(event);
+        const displayStr = names.join(' B2B ');
+        return (
+          <DJNameDisplay
+            names={names}
+            onDjClick={onDjClick}
+            mobileFontSize={48}
+            desktopFontSize={upcomingDjFontSize(displayStr)}
+            color={COLORS.brand.green}
+          />
+        );
+      })()}
     </div>
   );
 }

@@ -8,7 +8,6 @@ import ThisWeekSection from './schedule/_components/ThisWeekSection';
 const communityPhoto = '/community-photo.jpg';
 const mapPhoto = '/map-photo.jpg';
 const volunteersPhoto = '/volunteers-photo.jpg';
-const skatesPhoto = '/skates-photo.jpg';
 
 const directionLinks = ['From 72nd Street', 'From West 67th Street', 'From the South entrances'];
 
@@ -178,46 +177,6 @@ export default async function Home() {
             <PiggyBank size={15} />
             Donate to CPDSA
           </a>
-        </div>
-      </section>
-
-      {/* ── Skate Maintenance ── */}
-      <section className="flex flex-col sm:flex-row w-full rounded-[4px]">
-        {/* Text (top on mobile, left on desktop) */}
-        <div className="flex flex-col gap-2 items-start justify-center p-6 w-full sm:w-1/2">
-          <p
-            style={{ fontFamily: 'var(--font-anton)', fontSize: 64, lineHeight: 1.2, color: 'rgba(0,0,0,0.9)' }}
-          >
-            SKATE MAINTENANCE
-          </p>
-          <div className="pb-4 max-w-full">
-            <p
-              className="text-base tracking-[0.16px]"
-              style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400, color: 'rgba(0,0,0,0.9)' }}
-            >
-              The CPDSA is only run by volunteers. We need your help in the fields of administration and operation, including setting up and breaking down the skate circle for each session.
-            </p>
-          </div>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSexample/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center h-10 px-4 rounded-full text-white text-sm"
-            style={{ backgroundColor: '#6633cc', fontFamily: 'var(--font-poppins)', fontWeight: 500 }}
-          >
-            Volunteer with us
-          </a>
-        </div>
-
-        {/* Photo (bottom on mobile, right on desktop) */}
-        <div className="w-full h-[315px] sm:w-1/2 relative overflow-hidden rounded-[4px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={skatesPhoto}
-            alt="Roller skates"
-            className="absolute max-w-none"
-            style={{ width: '106.59%', height: '428%', left: '-2.87%', top: '-313.76%' }}
-          />
         </div>
       </section>
     </>

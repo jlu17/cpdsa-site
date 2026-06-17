@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
 import { SITE } from '@/lib/constants/site';
 import { getEvents, getDJs } from '@/lib/graphql';
 import PageHero from '@/components/ui/PageHero';
 import ScheduleWithDrawer from './_components/ScheduleWithDrawer';
 import { splitEvents } from './_components/scheduleUtils';
 import { COLORS } from '@/lib/constants/colors';
-
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: `Schedule — ${SITE.shortName}`,

@@ -41,6 +41,14 @@ export function splitEvents(events: SkateEvent[]): {
   };
 }
 
+/** Extracts ordered DJ names from an event's eventDjs field. */
+export function getEventDjNames(event: SkateEvent): string[] {
+  if (!event.eventFields.eventDjs) return [];
+  return event.eventFields.eventDjs
+    .map(dj => dj.eventDj.edges[0]?.node.djFields.djName)
+    .filter((name): name is string => Boolean(name));
+}
+
 /** "SATURDAY, MAY 23" — format used in This Week section */
 export function formatThisWeekDate(dateStr: string): string {
   const d = new Date(dateStr);

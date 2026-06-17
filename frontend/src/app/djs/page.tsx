@@ -5,7 +5,6 @@ import { getDJs } from '@/lib/graphql';
 import PageHero from '@/components/ui/PageHero';
 import DJGrid from './_components/DJGrid';
 import DJGreaseSection from './_components/DJGreaseSection';
-import DJSkateSection from './_components/DJSkateSection';
 
 export const metadata: Metadata = {
   title: `Our DJs — ${SITE.shortName}`,
@@ -22,7 +21,6 @@ export default async function DJsPage() {
       <PageHero title="OUR DJS" color={COLORS.brand.purple} />
       <DJGrid djs={djs} />
       <DJGreaseSection />
-      <DJSkateSection />
     </div>
   );
 }

@@ -6,7 +6,6 @@ import { FONTS, FONT_WEIGHTS } from '@/lib/constants/typography';
 import OurStoryTab from './OurStoryTab';
 import OurHistoryTab from './OurHistoryTab';
 import AboutGreaseSection from './AboutGreaseSection';
-import AboutSkateMaintenanceSection from './AboutSkateMaintenanceSection';
 
 type Tab = 'story' | 'history';
 
@@ -53,7 +52,6 @@ export default function AboutTabSwitcher() {
 
       {/* Always-visible sections */}
       <AboutGreaseSection />
-      <AboutSkateMaintenanceSection />
     </div>
   );
 }

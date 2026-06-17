@@ -4,17 +4,10 @@ import { CalendarDays } from 'lucide-react';
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatThisWeekDate, EVENT_TIME } from './scheduleUtils';
+import { formatThisWeekDate, EVENT_TIME, getEventDjNames } from './scheduleUtils';
+import DJNameDisplay from './DJNameDisplay';
 
 const DATE_COLOR = '#204630';
-
-function djFontSize(name: string): number {
-  const len = name.length;
-  if (len <= 14) return 120;
-  if (len <= 20) return 100;
-  if (len <= 26) return 84;
-  return 72;
-}
 
 export default function ThisWeekSection({ events, onDjClick, heading = 'This week' }: { events: SkateEvent[]; onDjClick?: (name: string) => void; heading?: string }) {
   if (events.length === 0) return null;
@@ -63,33 +56,20 @@ export default function ThisWeekSection({ events, onDjClick, heading = 'This wee
               </p>
             </div>
 
-            {/* DJ name — smaller on mobile, larger on desktop */}
-            <p
-              className="block sm:hidden uppercase leading-[1.05] w-full"
-              onClick={() => onDjClick?.(event.title)}
-              style={{
-                fontFamily: FONTS.anton,
-                fontSize: 56,
-                color: COLORS.brand.purple,
-                letterSpacing: '0.26px',
-                cursor: onDjClick ? 'pointer' : undefined,
-              }}
-            >
-              {event.title}
-            </p>
-            <p
-              className="hidden sm:block uppercase leading-[1.05] w-full"
-              onClick={() => onDjClick?.(event.title)}
-              style={{
-                fontFamily: FONTS.anton,
-                fontSize: djFontSize(event.title),
-                color: COLORS.brand.purple,
-                letterSpacing: '0.26px',
-                cursor: onDjClick ? 'pointer' : undefined,
-              }}
-            >
-              {event.title}
-            </p>
+            {/* DJ name(s) */}
+            {(() => {
+              const names = getEventDjNames(event);
+              const displayStr = names.join(' B2B ');
+              return (
+                <DJNameDisplay
+                  names={names}
+                  onDjClick={onDjClick}
+                  mobileFontSize={56}
+                  desktopFontSize={djFontSize(displayStr)}
+                  color={COLORS.brand.purple}
+                />
+              );
+            })()}
           </div>
         ))}
       </div>

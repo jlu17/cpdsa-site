@@ -1,6 +1,12 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
+
+// Matches the sticky navbar's h-[80px] so items scrolled underneath it aren't counted as visible.
+const NAVBAR_HEIGHT = 80;
 
 const YEAR_COLORS = {
   green: COLORS.brand.green,
@@ -13,7 +19,6 @@ const MILESTONES = [
     year: '1930s',
     subtitle: ['halloween', '1936'],
     color: 'green' as const,
-    featured: true,
     body: 'Famous New York photographs from the 1890s show people ice skating on the Lake and the Boat Basin in Central Park. Roller Skating in the park was popular in the 1930s, which is depicted in a vintage poster for a roller skating event that took place on Halloween 1936.',
   },
   {
@@ -55,6 +60,43 @@ const MILESTONES = [
 ] as const;
 
 export default function OurHistoryTab() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    // Advance to the next milestone as soon as the current one's top edge
+    // starts sliding under the navbar — recomputed on every scroll so it
+    // stays correct in both directions, rather than waiting for a milestone
+    // to fully clear the navbar (which left a dead zone between rows).
+    let ticking = false;
+
+    const updateActive = () => {
+      let next = 0;
+      itemRefs.current.forEach((el, i) => {
+        if (el && el.getBoundingClientRect().top <= NAVBAR_HEIGHT) {
+          next = Math.min(i + 1, itemRefs.current.length - 1);
+        }
+      });
+      setActiveIndex(next);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateActive);
+      }
+    };
+
+    updateActive();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col sm:flex-row gap-6 items-start px-6 sm:pl-12 sm:pr-24 py-8">
       {/* Image — full width on mobile, fixed column on desktop */}
@@ -69,25 +111,25 @@ export default function OurHistoryTab() {
 
       {/* Timeline entries */}
       <div className="flex flex-col gap-8 flex-1">
-        {MILESTONES.map(({ year, subtitle, color, body, ...rest }, i) => {
+        {MILESTONES.map(({ year, subtitle, color, body }, i) => {
           const yearColor = YEAR_COLORS[color];
-          const isFeatured = 'featured' in rest && rest.featured;
+          const isFeatured = i === activeIndex;
           return (
-            <div key={i} className="flex gap-4 items-start">
+            <div
+              key={i}
+              ref={el => { itemRefs.current[i] = el; }}
+              className="flex gap-4 items-start"
+            >
               {/* Year + subtitle label */}
               <div
-                className="flex-shrink-0 w-[211px] flex gap-2 items-center"
-                style={
-                  isFeatured
-                    ? {
-                        backgroundColor: '#ffffff',
-                        border: `2px solid ${yearColor}`,
-                        borderRadius: 4,
-                        padding: 8,
-                        boxShadow: '0px 6px 8px rgba(92,92,92,0.16)',
-                      }
-                    : undefined
-                }
+                className="flex-shrink-0 w-[250px] flex gap-2 items-center transition-colors duration-300"
+                style={{
+                  backgroundColor: isFeatured ? '#ffffff' : 'transparent',
+                  border: `2px solid ${isFeatured ? yearColor : 'transparent'}`,
+                  borderRadius: 4,
+                  padding: 8,
+                  boxShadow: isFeatured ? '0px 6px 8px rgba(92,92,92,0.16)' : 'none',
+                }}
               >
                 <p
                   style={{

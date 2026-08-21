@@ -1,7 +1,8 @@
+import { Fragment } from 'react';
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatUpcomingDate, EVENT_TIME, getEventDjNames } from './scheduleUtils';
+import { formatUpcomingDate, EVENT_TIME, getEventDjNames, pairEventsByWeekend } from './scheduleUtils';
 
 const DJ_FONT_SIZE = 56;
 import DJNameDisplay from './DJNameDisplay';
@@ -26,13 +27,15 @@ export default function UpcomingSection({ events, onDjClick }: { events: SkateEv
       </div>
 
       <div className="flex flex-wrap w-full">
-        {events.map((event, i) => (
-          <EventCell
-            key={event.databaseId}
-            event={event}
-            isLeft={i % 2 === 0}
-            onDjClick={onDjClick}
-          />
+        {pairEventsByWeekend(events).map(({ left, right, isNewWeekend }) => (
+          <Fragment key={left.databaseId}>
+            <EventCell event={left} showTopBorder={isNewWeekend} onDjClick={onDjClick} />
+            {right ? (
+              <EventCell event={right} showTopBorder={isNewWeekend} onDjClick={onDjClick} />
+            ) : (
+              <div className="hidden sm:block w-1/2" />
+            )}
+          </Fragment>
         ))}
       </div>
     </section>
@@ -41,17 +44,17 @@ export default function UpcomingSection({ events, onDjClick }: { events: SkateEv
 
 function EventCell({
   event,
-  isLeft,
+  showTopBorder,
   onDjClick,
 }: {
   event: SkateEvent;
-  isLeft: boolean;
+  showTopBorder: boolean;
   onDjClick?: (name: string) => void;
 }) {
   return (
     <div
-      className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2 border-t border-black/15${
-        isLeft ? ' sm:border-r sm:border-r-black/15' : ''
+      className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2${
+        showTopBorder ? ' border-t border-black/15' : ''
       }`}
     >
       {/* Date + time */}

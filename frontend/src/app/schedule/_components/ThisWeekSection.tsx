@@ -1,10 +1,11 @@
 'use client';
 
+import { Fragment } from 'react';
 import { CalendarDays } from 'lucide-react';
 import { SkateEvent } from '@/lib/graphql';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_SIZES, FONT_WEIGHTS } from '@/lib/constants/typography';
-import { formatThisWeekDate, EVENT_TIME, getEventDjNames } from './scheduleUtils';
+import { formatThisWeekDate, EVENT_TIME, getEventDjNames, pairEventsByWeekend } from './scheduleUtils';
 
 const DJ_FONT_SIZE = 72;
 import DJNameDisplay from './DJNameDisplay';
@@ -29,66 +30,84 @@ export default function ThisWeekSection({ events, onDjClick, heading = 'This wee
       </div>
 
       <div className="flex flex-wrap w-full">
-        {events.map((event, i) => (
-          <div
-            key={event.databaseId}
-            className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2${
-              i % 2 === 0
-                ? ' border-b-2 border-[#6633cc] sm:border-b-0 sm:border-r-2'
-                : ''
-            }`}
-          >
-            {/* Date + time */}
-            <div className="flex items-start gap-3 mb-1">
-              <CalendarDays
-                size={18}
-                style={{ color: DATE_COLOR, flexShrink: 0, marginTop: 2 }}
-              />
-              <p style={{
-                fontFamily: FONTS.poppins,
-                fontWeight: FONT_WEIGHTS.semibold,
-                fontSize: FONT_SIZES.body,
-                color: DATE_COLOR,
-                letterSpacing: '0.49px',
-                lineHeight: 1.25,
-              }}>
-                {formatThisWeekDate(event.eventFields.eventDate)}
-                {event.eventFields.eventHelperText && (
-                  <span
-                    className="inline-block align-middle"
-                    style={{
-                      backgroundColor: '#fff',
-                      color: DATE_COLOR,
-                      border: `1.5px solid ${DATE_COLOR}`,
-                      fontSize: 12,
-                      fontWeight: FONT_WEIGHTS.semibold,
-                      letterSpacing: '0.3px',
-                      padding: '2px 8px',
-                      borderRadius: 9999,
-                      marginLeft: 8,
-                    }}
-                  >
-                    {event.eventFields.eventHelperText}
-                  </span>
-                )}
-                <br />
-                {EVENT_TIME}
-              </p>
-            </div>
-
-            {/* DJ name(s) */}
-            <DJNameDisplay
-              names={getEventDjNames(event)}
-              onDjClick={onDjClick}
-              mobileFontSize={56}
-              desktopFontSize={DJ_FONT_SIZE}
-              color={COLORS.brand.purple}
-              cancelled={event.eventFields.isEventCanceled ?? false}
-              cancelReason={event.eventFields.eventCancelationReason}
-            />
-          </div>
+        {pairEventsByWeekend(events).map(({ left, right }) => (
+          <Fragment key={left.databaseId}>
+            <EventCard event={left} bordered onDjClick={onDjClick} />
+            {right ? (
+              <EventCard event={right} bordered={false} onDjClick={onDjClick} />
+            ) : (
+              <div className="hidden sm:block w-1/2" />
+            )}
+          </Fragment>
         ))}
       </div>
     </section>
+  );
+}
+
+function EventCard({
+  event,
+  bordered,
+  onDjClick,
+}: {
+  event: SkateEvent;
+  bordered: boolean;
+  onDjClick?: (name: string) => void;
+}) {
+  return (
+    <div
+      className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2${
+        bordered ? ' border-b-2 border-[#6633cc] sm:border-b-0 sm:border-r-2' : ''
+      }`}
+    >
+      {/* Date + time */}
+      <div className="flex items-start gap-3 mb-1">
+        <CalendarDays
+          size={18}
+          style={{ color: DATE_COLOR, flexShrink: 0, marginTop: 2 }}
+        />
+        <p style={{
+          fontFamily: FONTS.poppins,
+          fontWeight: FONT_WEIGHTS.semibold,
+          fontSize: FONT_SIZES.body,
+          color: DATE_COLOR,
+          letterSpacing: '0.49px',
+          lineHeight: 1.25,
+        }}>
+          {formatThisWeekDate(event.eventFields.eventDate)}
+          {event.eventFields.eventHelperText && (
+            <span
+              className="inline-block align-middle"
+              style={{
+                backgroundColor: '#fff',
+                color: DATE_COLOR,
+                border: `1.5px solid ${DATE_COLOR}`,
+                fontSize: 12,
+                fontWeight: FONT_WEIGHTS.semibold,
+                letterSpacing: '0.3px',
+                padding: '2px 8px',
+                borderRadius: 9999,
+                marginLeft: 8,
+              }}
+            >
+              {event.eventFields.eventHelperText}
+            </span>
+          )}
+          <br />
+          {EVENT_TIME}
+        </p>
+      </div>
+
+      {/* DJ name(s) */}
+      <DJNameDisplay
+        names={getEventDjNames(event)}
+        onDjClick={onDjClick}
+        mobileFontSize={56}
+        desktopFontSize={DJ_FONT_SIZE}
+        color={COLORS.brand.purple}
+        cancelled={event.eventFields.isEventCanceled ?? false}
+        cancelReason={event.eventFields.eventCancelationReason}
+      />
+    </div>
   );
 }

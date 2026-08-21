@@ -65,6 +65,24 @@ function EventCell({
         marginBottom: 4,
       }}>
         {formatUpcomingDate(event.eventFields.eventDate)}
+        {event.eventFields.eventHelperText && (
+          <span
+            className="inline-block align-middle"
+            style={{
+              backgroundColor: '#fff',
+              color: DATE_COLOR,
+              border: `1.5px solid ${DATE_COLOR}`,
+              fontSize: 12,
+              fontWeight: FONT_WEIGHTS.semibold,
+              letterSpacing: '0.3px',
+              padding: '2px 8px',
+              borderRadius: 9999,
+              marginLeft: 8,
+            }}
+          >
+            {event.eventFields.eventHelperText}
+          </span>
+        )}
         <br />
         {EVENT_TIME}
       </p>
@@ -78,7 +96,6 @@ function EventCell({
         color={COLORS.brand.green}
         cancelled={event.eventFields.isEventCanceled ?? false}
         cancelReason={event.eventFields.eventCancelationReason}
-        helperText={event.eventFields.eventHelperText}
       />
     </div>
   );

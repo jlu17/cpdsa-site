@@ -8,6 +8,8 @@ import { FONTS, FONT_WEIGHTS } from '@/lib/constants/typography';
 import { getEventDjNames } from './scheduleUtils';
 
 const DAY_HEADERS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+// Sun, Mon, Fri, Sat are wider than Tue/Wed/Thu, which are less relevant for weekend skating.
+const CALENDAR_GRID_COLUMNS = '1.15fr 1.15fr 0.8fr 0.8fr 0.8fr 1.15fr 1.15fr';
 const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',
@@ -21,8 +23,8 @@ export default function CalendarView({
   onDjClick?: (name: string) => void;
 }) {
   const today = new Date();
-  const [year, setYear] = useState(today.getUTCFullYear());
-  const [month, setMonth] = useState(today.getUTCMonth());
+  const [year, setYear] = useState(today.getFullYear());
+  const [month, setMonth] = useState(today.getMonth());
 
   const eventMap = new Map<string, SkateEvent>();
   events.forEach(e => {
@@ -32,7 +34,7 @@ export default function CalendarView({
   const startOffset = new Date(Date.UTC(year, month, 1)).getUTCDay();
   const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
   const totalCells = Math.ceil((startOffset + daysInMonth) / 7) * 7;
-  const todayStr = today.toISOString().slice(0, 10);
+  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
   const cells = Array.from({ length: totalCells }, (_, i) => {
     const dayNum = i - startOffset + 1;
@@ -78,8 +80,8 @@ export default function CalendarView({
 
       {/* Day-of-week headers */}
       <div
-        className="grid grid-cols-7 border-l border-t border-b"
-        style={{ borderColor: COLORS.border.default }}
+        className="grid border-l border-t border-b"
+        style={{ borderColor: COLORS.border.default, gridTemplateColumns: CALENDAR_GRID_COLUMNS }}
       >
         {DAY_HEADERS.map(d => (
           <div
@@ -99,8 +101,8 @@ export default function CalendarView({
 
       {/* Calendar grid */}
       <div
-        className="grid grid-cols-7 border-l"
-        style={{ borderColor: COLORS.border.default }}
+        className="grid border-l"
+        style={{ borderColor: COLORS.border.default, gridTemplateColumns: CALENDAR_GRID_COLUMNS }}
       >
         {cells.map((cell, i) => {
           if (!cell) {
@@ -126,11 +128,14 @@ export default function CalendarView({
             >
               {/* Day number */}
               <span
-                className="text-xs sm:text-sm leading-none"
+                className={`text-xs sm:text-sm leading-none w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center${
+                  isToday ? ' rounded-full' : ''
+                }`}
                 style={{
                   fontFamily: FONTS.poppins,
                   fontWeight: isToday ? FONT_WEIGHTS.bold : FONT_WEIGHTS.regular,
-                  color: isToday ? COLORS.brand.purple : COLORS.text.muted,
+                  color: isToday ? '#fff' : COLORS.text.muted,
+                  backgroundColor: isToday ? COLORS.brand.purple : 'transparent',
                 }}
               >
                 {cell.day}

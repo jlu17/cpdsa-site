@@ -10,4 +10,5 @@ export const SITE = {
     'https://docs.google.com/forms/d/e/1FAIpQLSexample/viewform',
   googleMapsUrl:
     'https://maps.google.com/?q=Skaters+Circle+Central+Park+New+York',
+  photosAlbumUrl: 'https://photos.app.goo.gl/NFAEPuTiRBZJjbsq7',
 } as const;

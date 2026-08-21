@@ -5,6 +5,7 @@ import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_WEIGHTS } from '@/lib/constants/typography';
 import { SkateVideo } from '@/lib/graphql';
 import PressTab from './PressTab';
+import PhotosTab from './PhotosTab';
 
 type Tab = 'photos' | 'videos' | 'press';
 
@@ -48,11 +49,7 @@ export default function MediaTabSwitcher({ videos }: { videos: SkateVideo[] }) {
 
       <div className="w-full">
         {active === 'press' && <PressTab videos={videos} />}
-        {active === 'photos' && (
-          <div className="px-6 py-8" style={{ fontFamily: FONTS.poppins, color: COLORS.text.muted }}>
-            Photos coming soon.
-          </div>
-        )}
+        {active === 'photos' && <PhotosTab />}
         {active === 'videos' && (
           <div className="px-6 py-8" style={{ fontFamily: FONTS.poppins, color: COLORS.text.muted }}>
             Videos coming soon.

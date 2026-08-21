@@ -8,6 +8,7 @@ import ThisWeekSection from './schedule/_components/ThisWeekSection';
 const communityPhoto = '/community-photo.jpg';
 const mapPhoto = '/map-photo.jpg';
 const volunteersPhoto = '/volunteers-photo.jpg';
+const heroPhoto = '/home-hero-photo.jpg';
 
 const directionLinks = ['From 72nd Street', 'From West 67th Street', 'From the South entrances'];
 
@@ -18,9 +19,29 @@ export default async function Home() {
 
   return (
     <>
+      {/* ── Hero ── */}
+      <section className="relative w-full h-[380px] sm:h-[520px] overflow-hidden rounded-[4px]">
+        <Image
+          src={heroPhoto}
+          alt="CPDSA skaters gathered together in Central Park"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="absolute inset-0 flex items-end p-6 sm:p-12">
+          <p
+            className="text-white"
+            style={{ fontFamily: 'var(--font-anton)', fontSize: 48, lineHeight: 1.15, letterSpacing: '0.26px', textTransform: 'uppercase' }}
+          >
+            Lace up those 8&rsquo;s:<br />the skate season is here!
+          </p>
+        </div>
+      </section>
+
       {/* ── Upcoming Schedule ── */}
       <section className="w-full flex flex-col">
-        <ThisWeekSection events={displayEvents} heading="Upcoming Schedule" />
+        <ThisWeekSection events={displayEvents} heading="Upcoming Schedule" showBackground={false} />
 
         <div className="flex items-center h-[75px] px-6">
           <Link

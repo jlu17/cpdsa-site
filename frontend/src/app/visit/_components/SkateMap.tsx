@@ -20,7 +20,7 @@ const LEGEND_ITEMS: LegendItem[] = [
 
 export default function SkateMap() {
   return (
-    <div className="flex flex-col gap-2 w-full sm:flex-shrink-0 sm:w-[643px]" style={{ opacity: 0.7 }}>
+    <div className="flex flex-col pt-2 gap-2 w-full sm:flex-shrink-0 sm:w-[480px]" style={{ opacity: 0.7 }}>
       {/* Map illustration — inline SVG preserves crisp vector rendering at any size */}
       <div className="rounded-[4px] overflow-hidden aspect-[643/833]" style={{ backgroundColor: '#a7a7a7' }}>
         <SkateCircleMapSvg className="w-full h-full" />

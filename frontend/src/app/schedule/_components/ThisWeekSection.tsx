@@ -13,11 +13,11 @@ import DJNameDisplay from './DJNameDisplay';
 const DATE_COLOR = '#204630';
 const SECTION_BG = 'rgba(102, 51, 204, 0.08)';
 
-export default function ThisWeekSection({ events, onDjClick, heading = 'This week' }: { events: SkateEvent[]; onDjClick?: (name: string) => void; heading?: string }) {
+export default function ThisWeekSection({ events, onDjClick, heading = 'This week', showBackground = true }: { events: SkateEvent[]; onDjClick?: (name: string) => void; heading?: string; showBackground?: boolean }) {
   if (events.length === 0) return null;
 
   return (
-    <section className="w-full flex flex-col gap-2 py-4" style={{ backgroundColor: SECTION_BG }}>
+    <section className="w-full flex flex-col gap-2 py-4" style={{ backgroundColor: showBackground ? SECTION_BG : 'transparent' }}>
       <div className="px-6 h-[34px] flex items-center">
         <p style={{
           fontFamily: FONTS.poppins,

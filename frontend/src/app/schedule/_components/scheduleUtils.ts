@@ -58,13 +58,9 @@ export function formatThisWeekDate(dateStr: string): string {
   return `${weekday}, ${month} ${day}`.toUpperCase();
 }
 
-/** "MAY 23, SATURDAY" — format used in Upcoming section */
+/** "SATURDAY, MAY 23" — format used in Upcoming section */
 export function formatUpcomingDate(dateStr: string): string {
-  const d = new Date(dateStr);
-  const weekday = d.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'UTC' });
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' });
-  const day = d.getUTCDate();
-  return `${month} ${day}, ${weekday}`.toUpperCase();
+  return formatThisWeekDate(dateStr);
 }
 
 

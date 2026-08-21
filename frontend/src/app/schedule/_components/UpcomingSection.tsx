@@ -67,7 +67,9 @@ function EventCell({
         lineHeight: 1.4,
         marginBottom: 4,
       }}>
-        {formatUpcomingDate(event.eventFields.eventDate)}
+        <span style={{ fontSize: FONT_SIZES.body + 6 }}>
+          {formatUpcomingDate(event.eventFields.eventDate)}
+        </span>
         {event.eventFields.eventHelperText && (
           <span
             className="inline-block align-middle"

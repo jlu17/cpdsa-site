@@ -75,7 +75,9 @@ function EventCard({
           letterSpacing: '0.49px',
           lineHeight: 1.25,
         }}>
-          {formatThisWeekDate(event.eventFields.eventDate)}
+          <span style={{ fontSize: FONT_SIZES.body + 6 }}>
+            {formatThisWeekDate(event.eventFields.eventDate)}
+          </span>
           {event.eventFields.eventHelperText && (
             <span
               className="inline-block align-middle"

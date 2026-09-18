@@ -4,6 +4,7 @@ import { PiggyBank } from 'lucide-react';
 import { getEvents } from '@/lib/graphql';
 import { splitEvents } from './schedule/_components/scheduleUtils';
 import UpcomingPreviewSection from './schedule/_components/UpcomingPreviewSection';
+import BecomeAFriendSection from './_components/BecomeAFriendSection';
 
 const communityPhoto = '/community-photo.jpg';
 const mapPhoto = '/map-photo.jpg';
@@ -130,6 +131,9 @@ export default async function Home() {
           ))}
         </div>
       </section>
+
+      {/* ── Become a Friend of the Circle ── */}
+      <BecomeAFriendSection />
 
       {/* ── Grease the Wheels ── */}
       <section className="flex flex-col sm:flex-row w-full rounded-[4px] sm:h-[368px]">

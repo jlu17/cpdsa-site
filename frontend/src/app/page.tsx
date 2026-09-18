@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { PiggyBank } from 'lucide-react';
 import { getEvents } from '@/lib/graphql';
 import { splitEvents } from './schedule/_components/scheduleUtils';
-import ThisWeekSection from './schedule/_components/ThisWeekSection';
+import UpcomingPreviewSection from './schedule/_components/UpcomingPreviewSection';
 
 const communityPhoto = '/community-photo.jpg';
 const mapPhoto = '/map-photo.jpg';
@@ -14,7 +14,7 @@ const directionLinks = ['From 72nd Street', 'From West 67th Street', 'From the S
 export default async function Home() {
   const events = await getEvents();
   const { thisWeek, upcoming } = splitEvents(events);
-  const displayEvents = thisWeek.length > 0 ? thisWeek : upcoming.slice(0, 2);
+  const displayEvents = [...thisWeek, ...upcoming].slice(0, 4);
 
   return (
     <>
@@ -62,19 +62,7 @@ export default async function Home() {
       </section>
 
       {/* ── Upcoming Schedule ── */}
-      <section className="w-full flex flex-col">
-        <ThisWeekSection events={displayEvents} heading="Upcoming Schedule" showBackground={false} />
-
-        <div className="flex items-center h-[75px] px-6">
-          <Link
-            href="/schedule"
-            className="flex items-center justify-center h-10 px-4 rounded-full text-white text-sm"
-            style={{ backgroundColor: '#6633CC', fontFamily: 'var(--font-poppins)', fontWeight: 500 }}
-          >
-            See full Schedule
-          </Link>
-        </div>
-      </section>
+      <UpcomingPreviewSection events={displayEvents} />
 
       {/* ── Visit the Skate Circle ── */}
       <section className="flex flex-col sm:flex-row w-full rounded-[4px]">

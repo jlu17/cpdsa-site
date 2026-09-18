@@ -49,6 +49,25 @@ export function getEventDjNames(event: SkateEvent): string[] {
     .filter((name): name is string => Boolean(name));
 }
 
+export interface EventDjInfo {
+  name: string;
+  photoUrl: string | null;
+  photoAlt: string;
+}
+
+/** Extracts ordered DJ name + photo pairs from an event's eventDjs field. */
+export function getEventDjs(event: SkateEvent): EventDjInfo[] {
+  if (!event.eventFields.eventDjs) return [];
+  return event.eventFields.eventDjs
+    .map(dj => dj.eventDj.edges[0]?.node.djFields)
+    .filter((fields): fields is NonNullable<typeof fields> => Boolean(fields?.djName))
+    .map(fields => ({
+      name: fields.djName,
+      photoUrl: fields.djPhoto?.node.sourceUrl ?? null,
+      photoAlt: fields.djPhoto?.node.altText || fields.djName,
+    }));
+}
+
 /** "SATURDAY, MAY 23" — format used in This Week section */
 export function formatThisWeekDate(dateStr: string): string {
   const d = new Date(dateStr);

@@ -36,7 +36,10 @@ export interface SkateEvent {
         edges: Array<{
           node: {
             id: string;
-            djFields: { djName: string };
+            djFields: {
+              djName: string;
+              djPhoto: { node: { sourceUrl: string; altText: string } } | null;
+            };
           };
         }>;
       };
@@ -151,6 +154,12 @@ export const GET_EVENTS = gql`
                   ... on Dj {
                     djFields {
                       djName
+                      djPhoto {
+                        node {
+                          sourceUrl
+                          altText
+                        }
+                      }
                     }
                   }
                 }

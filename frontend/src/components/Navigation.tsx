@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { PiggyBank, Menu, X } from 'lucide-react';
+import { Heart, Menu, X } from 'lucide-react';
 import { NAV_LINKS } from '@/lib/constants/navigation';
 import { COLORS } from '@/lib/constants/colors';
 import { FONTS, FONT_WEIGHTS } from '@/lib/constants/typography';
@@ -58,7 +58,7 @@ export default function Navigation() {
           className="hidden md:inline-flex items-center gap-2 h-10 px-4 rounded-full text-white text-sm whitespace-nowrap"
           style={{ backgroundColor: COLORS.brand.purple, fontFamily: FONTS.poppins, fontWeight: FONT_WEIGHTS.medium }}
         >
-          <PiggyBank size={15} />
+          <Heart size={15} />
           Donate
         </Link>
 
@@ -88,7 +88,7 @@ export default function Navigation() {
             className="inline-flex items-center gap-2 h-10 px-4 rounded-full text-white w-fit"
             style={{ backgroundColor: COLORS.brand.purple }}
           >
-            <PiggyBank size={15} />
+            <Heart size={15} />
             Donate
           </Link>
         </div>

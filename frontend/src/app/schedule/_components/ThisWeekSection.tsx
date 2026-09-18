@@ -58,7 +58,7 @@ function EventCard({
   return (
     <div
       className={`flex flex-col justify-end px-6 py-2 w-full sm:w-1/2${
-        bordered ? ' border-b-2 border-[#6633cc] sm:border-b-0 sm:border-r-2' : ''
+        bordered ? ' sm:border-r-2 sm:border-[#6633cc]' : ''
       }`}
     >
       {/* Date + time */}

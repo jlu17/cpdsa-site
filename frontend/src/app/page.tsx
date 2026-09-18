@@ -8,7 +8,6 @@ import ThisWeekSection from './schedule/_components/ThisWeekSection';
 const communityPhoto = '/community-photo.jpg';
 const mapPhoto = '/map-photo.jpg';
 const volunteersPhoto = '/volunteers-photo.jpg';
-const heroPhoto = '/home-hero-photo.jpg';
 
 const directionLinks = ['From 72nd Street', 'From West 67th Street', 'From the South entrances'];
 
@@ -20,22 +19,45 @@ export default async function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative w-full h-[380px] sm:h-[520px] overflow-hidden rounded-[4px]">
-        <Image
-          src={heroPhoto}
-          alt="CPDSA skaters gathered together in Central Park"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        <div className="absolute inset-0 flex items-end p-6 sm:p-12">
+      <section className="flex flex-col sm:flex-row items-stretch w-full" style={{ backgroundColor: '#2b8d01' }}>
+        {/* Text */}
+        <div className="flex flex-col gap-6 items-start justify-center px-6 py-10 sm:px-12 sm:py-20 w-full sm:w-[514px] sm:flex-shrink-0">
           <p
-            className="text-white"
-            style={{ fontFamily: 'var(--font-anton)', fontSize: 48, lineHeight: 1.15, letterSpacing: '0.26px', textTransform: 'uppercase' }}
+            className="block sm:hidden text-white uppercase"
+            style={{ fontFamily: 'var(--font-anton)', fontSize: 48, lineHeight: 0.95 }}
           >
-            Lace up those 8&rsquo;s:<br />the skate season is here!
+            WE ARE<br />THE<br /><span style={{ color: '#c8ffc1' }}>CPDSA</span>
           </p>
+          <p
+            className="hidden sm:block text-white uppercase"
+            style={{ fontFamily: 'var(--font-anton)', fontSize: 120, lineHeight: 0.9 }}
+          >
+            WE ARE<br />THE<br /><span style={{ color: '#c8ffc1' }}>CPDSA</span>
+          </p>
+          <p
+            className="text-white text-base tracking-[0.16px]"
+            style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400 }}
+          >
+            We are the Central Park Dance Skaters Association. We are a family-friendly organization that offers present and future generations a free, open-air, roller-skating experience with live DJs in the heart of Central Park.
+          </p>
+          <Link
+            href="/about"
+            className="flex items-center justify-center h-10 px-4 rounded-full text-black text-sm"
+            style={{ backgroundColor: '#c8ffc1', fontFamily: 'var(--font-poppins)', fontWeight: 500 }}
+          >
+            Our Mission
+          </Link>
+        </div>
+
+        {/* Photo */}
+        <div className="w-full h-[300px] sm:h-auto sm:flex-1 sm:min-h-[520px] relative overflow-hidden">
+          <Image
+            src={communityPhoto}
+            alt="CPDSA community gathered at the Skate Circle"
+            fill
+            priority
+            className="object-cover"
+          />
         </div>
       </section>
 
@@ -51,45 +73,6 @@ export default async function Home() {
           >
             See full Schedule
           </Link>
-        </div>
-      </section>
-
-      {/* ── We Are ── */}
-      <section className="flex flex-col sm:flex-row w-full rounded-[4px]" style={{ backgroundColor: '#2b8d01' }}>
-        {/* Text */}
-        <div className="flex flex-col gap-2 items-start justify-center p-6 w-full sm:w-1/2">
-          <p
-            className="text-white"
-            style={{ fontFamily: 'var(--font-anton)', fontSize: 64, lineHeight: 1.2 }}
-          >
-            WE ARE
-          </p>
-          <div className="pb-4 max-w-full">
-            <p
-              className="text-white text-base tracking-[0.16px]"
-              style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400 }}
-            >
-              We are the Central Park Dance Skaters Association. We are a family-friendly organization that offers present and future generations a free, open-air, roller-skating experience with live DJs in the heart of Central Park.
-            </p>
-          </div>
-          <Link
-            href="/about"
-            className="flex items-center justify-center h-10 px-4 rounded-full bg-white text-black text-sm"
-            style={{ fontFamily: 'var(--font-poppins)', fontWeight: 500 }}
-          >
-            Our Mission
-          </Link>
-        </div>
-
-        {/* Photo */}
-        <div className="w-full h-[327px] sm:flex-1 sm:h-auto sm:min-h-[327px] relative overflow-hidden rounded-[4px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={communityPhoto}
-            alt="CPDSA community"
-            className="absolute inset-0 w-full h-[152%] object-cover max-w-none"
-            style={{ top: '-11.36%' }}
-          />
         </div>
       </section>
 
